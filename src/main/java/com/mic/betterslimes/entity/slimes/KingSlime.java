@@ -97,7 +97,7 @@ public class KingSlime extends EntityBetterSlime implements ISpecialSlime {
         leapVelocityMultiplierXZ = config.getFloat(NAME, "leapVelocityMultiplierXZ", 1.0F, 0, MAX, "Horizontal speed all entities affected by the leap attack get");
 
         explodeDamage = config.getFloat(NAME, "explodeDamage", 18.0F, 0, MAX, "Damage the leap attack deals");
-        explodeRange = config.getInt(NAME, "explodeDamage", 32, 0, MAX, "Damage the leap attack deals");
+        explodeRange = config.getInt(NAME, "explodeRange", 10, 0, MAX, "Range of the leap attack");
         movementSpeedMultiplier = config.getFloat(NAME, "movementSpeedMultiplier", 1.0F, 0, MAX, "Amount by which the movement speed of " + NAME + " is multiplied");
 
         size = config.getInt(NAME, "movementSpeedMultiplier", 7, 0, MAX, "Amount by which the movement speed of " + NAME + "is multiplied");
@@ -322,7 +322,7 @@ public class KingSlime extends EntityBetterSlime implements ISpecialSlime {
         for (EntityLivingBase entity : e) {
             double dist = this.getDistanceSq(entity) + 1;
 
-            if (entity != this && dist < explodeRange) {
+            if (entity != this && this.getDistance(entity) < explodeRange) {
                 {
                     entity.setPositionAndUpdate(entity.posX, entity.posY + 1.5, entity.posZ);
                     entity.addVelocity((0.8 / (entity.posX - this.posX)) * leapVelocityMultiplierXZ, MathHelper.clamp(32 / (dist) * leapVelocityMultiplierY, 1, 16), 0.8 / (entity.posZ - this.posZ) * leapVelocityMultiplierXZ);
