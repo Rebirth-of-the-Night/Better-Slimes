@@ -103,6 +103,9 @@ public class KingSlime extends EntityBetterSlime implements ISpecialSlime {
         size = config.getInt(NAME, "movementSpeedMultiplier", 7, 0, MAX, "Amount by which the movement speed of " + NAME + "is multiplied");
 
         spawnMinions = config.getBoolean(NAME, "spawnMinions", false, "Ability of the boss to summon little slaves to aid him in battle");
+        if (!spawnMinions) {
+            splitChance = 0;
+        }
 
         splitSlimeString = config.getString(NAME, "slimeChildren",  MODID + ":blue_slime", "The type of slime the boss will split into on death\n Must be a BetterSlimes slime");
 
@@ -161,6 +164,9 @@ public class KingSlime extends EntityBetterSlime implements ISpecialSlime {
             int j1 = this.getSpawnTime() - 1;
 
             if (spawnMinions && j1 <= 0) {
+
+                System.out.println("\nspawn\n");
+
                 this.playSound(this.getSquishSound(), (float) (this.getSoundVolume() * 1.2), ((this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F + 1.0F) / 0.8F);
                 for (int x = 0; x < 10; x++)
                     world.spawnParticle(EnumParticleTypes.SLIME, this.posX, this.getEntityBoundingBox().minY, this.posY, 0.0D, 0.0D, 0.0D);
@@ -187,7 +193,6 @@ public class KingSlime extends EntityBetterSlime implements ISpecialSlime {
     public void addTrackingPlayer(EntityPlayerMP player) {
         super.addTrackingPlayer(player);
         this.bossInfo.addPlayer(player);
-
     }
 
     public void setCustomNameTag(String name) {
@@ -241,10 +246,14 @@ public class KingSlime extends EntityBetterSlime implements ISpecialSlime {
 
     @Override
     protected EntityBetterSlime createInstance() {
-        if (EntityBetterSlime.class.isAssignableFrom(SplitSlime)) {
-            return (EntityBetterSlime)ForgeRegistries.ENTITIES.getValue(new ResourceLocation(splitSlimeString)).newInstance(this.world);
+        if (spawnMinions) {
+            if (EntityBetterSlime.class.isAssignableFrom(SplitSlime)) {
+                return (EntityBetterSlime) ForgeRegistries.ENTITIES.getValue(new ResourceLocation(splitSlimeString)).newInstance(this.world);
+            } else {
+                return new BlueSlime(this.world);
+            }
         } else {
-            return new BlueSlime(this.world);
+            return null;
         }
     }
 
@@ -271,6 +280,7 @@ public class KingSlime extends EntityBetterSlime implements ISpecialSlime {
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
         this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(40.0D);
+        this.getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(64.0D);
     }
 
     @Nullable
@@ -293,7 +303,7 @@ public class KingSlime extends EntityBetterSlime implements ISpecialSlime {
             this.playSound(SoundEvents.BLOCK_CLOTH_PLACE, 2.0F, 0.3F);
         this.playSound(SoundEvents.BLOCK_SAND_FALL, 2.0F, 0.8F);
         this.setPositionAndUpdate(this.posX, this.posY + 2, this.posZ);
-        if (!this.world.isRemote) this.addVelocity(d0 / 6, 2, d1 / 6);
+        if (!this.world.isRemote) this.addVelocity(d0 / 5, 2, d1 / 5);
     }
 
     private void explode() {
@@ -304,11 +314,7 @@ public class KingSlime extends EntityBetterSlime implements ISpecialSlime {
         this.targetLastPosX = null;
         this.targetLastPosZ = null;
 
-        List<EntityLivingBase> e = this.world.getEntitiesWithinAABB(EntityLivingBase.class, new AxisAlignedBB(this.getPosition()).grow(explodeRange, 32, explodeRange), new Predicate<EntityLivingBase>() {
-            public boolean apply(@Nullable EntityLivingBase entity) {
-                return true;
-            }
-        });
+        List<EntityLivingBase> e = this.world.getEntitiesWithinAABB(EntityLivingBase.class, new AxisAlignedBB(this.getPosition()).grow(explodeRange, 32, explodeRange), entity -> true);
 
         for (EntityLivingBase entity : e) {
             double dist = this.getDistanceSq(entity) + 1;

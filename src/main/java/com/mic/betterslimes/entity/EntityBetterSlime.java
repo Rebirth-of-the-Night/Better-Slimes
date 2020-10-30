@@ -26,6 +26,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 public class EntityBetterSlime extends EntitySlime {
 
 	public static float damageMultiplier = 1;
+	public static int splitChance = ConfigHandler.splitChance;
 
 	public double attackMod = 1;
 	public double healthMod = 1;
@@ -95,14 +96,15 @@ public class EntityBetterSlime extends EntitySlime {
 	protected void updateAITasks() {
 		super.updateAITasks();
 
-		if (tick > 200) {
-			if (rand.nextInt(ConfigHandler.splitChance) > rand.nextInt(100)) {
-				split();
+		if (splitChance > 0) {
+			if (tick > 200) {
+				if (rand.nextInt(splitChance) > rand.nextInt(100)) {
+					split();
+				}
+				tick = 0;
 			}
-			tick = 0;
+			tick++;
 		}
-		tick++;
-
 	}
 
 	public void split() {
