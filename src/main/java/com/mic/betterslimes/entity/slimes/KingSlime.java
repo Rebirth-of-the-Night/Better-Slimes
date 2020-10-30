@@ -322,7 +322,7 @@ public class KingSlime extends EntityBetterSlime implements ISpecialSlime {
         for (EntityLivingBase entity : e) {
             double dist = this.getDistanceSq(entity) + 1;
 
-            if (entity != this && dist < 512) {
+            if (entity != this && dist < explodeRange) {
                 {
                     entity.setPositionAndUpdate(entity.posX, entity.posY + 1.5, entity.posZ);
                     entity.addVelocity((0.8 / (entity.posX - this.posX)) * leapVelocityMultiplierXZ, MathHelper.clamp(32 / (dist) * leapVelocityMultiplierY, 1, 16), 0.8 / (entity.posZ - this.posZ) * leapVelocityMultiplierXZ);
