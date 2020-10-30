@@ -164,9 +164,6 @@ public class KingSlime extends EntityBetterSlime implements ISpecialSlime {
             int j1 = this.getSpawnTime() - 1;
 
             if (spawnMinions && j1 <= 0) {
-
-                System.out.println("\nspawn\n");
-
                 this.playSound(this.getSquishSound(), (float) (this.getSoundVolume() * 1.2), ((this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F + 1.0F) / 0.8F);
                 for (int x = 0; x < 10; x++)
                     world.spawnParticle(EnumParticleTypes.SLIME, this.posX, this.getEntityBoundingBox().minY, this.posY, 0.0D, 0.0D, 0.0D);
@@ -187,6 +184,12 @@ public class KingSlime extends EntityBetterSlime implements ISpecialSlime {
         }
         super.updateAITasks();
         this.bossInfo.setPercent(this.getHealth() / this.getMaxHealth());
+    }
+
+    @Override
+    public boolean canBePushed()
+    {
+        return false;
     }
 
     @Override
@@ -303,7 +306,7 @@ public class KingSlime extends EntityBetterSlime implements ISpecialSlime {
             this.playSound(SoundEvents.BLOCK_CLOTH_PLACE, 2.0F, 0.3F);
         this.playSound(SoundEvents.BLOCK_SAND_FALL, 2.0F, 0.8F);
         this.setPositionAndUpdate(this.posX, this.posY + 2, this.posZ);
-        if (!this.world.isRemote) this.addVelocity(d0 / 5, 2, d1 / 5);
+        if (!this.world.isRemote) this.setVelocity(d0 / 7, 2, d1 / 7);
     }
 
     private void explode() {
