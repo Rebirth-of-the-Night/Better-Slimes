@@ -10,8 +10,11 @@ import com.mic.betterslimes.entity.slimes.JungleSlime;
 import com.mic.betterslimes.entity.slimes.SandSlime;
 
 import MICDeps.util.handlers.ConfigHandler;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.monster.EntitySlime;
+import net.minecraft.init.SoundEvents;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
@@ -21,6 +24,8 @@ import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 public class EntityBetterSlime extends EntitySlime {
+
+	public static float damageMultiplier = 1;
 
 	public double attackMod = 1;
 	public double healthMod = 1;
@@ -39,6 +44,19 @@ public class EntityBetterSlime extends EntitySlime {
 	protected EntityBetterSlime createInstance() {
 
 		return new EntityBetterSlime(this.world);
+	}
+
+	@Override
+	protected void dealDamage(EntityLivingBase entityIn)
+	{
+		int i = this.getSlimeSize();
+
+		if (this.canEntityBeSeen(entityIn) && this.getDistanceSq(entityIn) < 0.6D * (double)i * 0.6D * (double)i && entityIn.attackEntityFrom(DamageSource.causeMobDamage(this), (float)this.getAttackStrength()))
+		{
+			this.playSound(SoundEvents.ENTITY_SLIME_ATTACK, 1.0F, (this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F + 1.0F);
+
+			entityIn.attackEntityFrom(DamageSource.causeMobDamage(this), (i+1) * damageMultiplier);
+		}
 	}
 
 	public void setAttackModifier(double mod) {

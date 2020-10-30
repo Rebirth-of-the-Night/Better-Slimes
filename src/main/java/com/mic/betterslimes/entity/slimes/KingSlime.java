@@ -53,6 +53,7 @@ public class KingSlime extends EntityBetterSlime implements ISpecialSlime {
             BossInfo.Color.BLUE, BossInfo.Overlay.PROGRESS));
     private static final DataParameter<Integer> SPAWN_TIME = EntityDataManager.<Integer>createKey(KingSlime.class,
             DataSerializers.VARINT);
+
     public static final String NAME = "KingSlime";
     public static final int MAX = Short.MAX_VALUE;
 
@@ -104,6 +105,8 @@ public class KingSlime extends EntityBetterSlime implements ISpecialSlime {
         spawnMinions = config.getBoolean(NAME, "spawnMinions", false, "Ability of the boss to summon little slaves to aid him in battle");
 
         splitSlimeString = config.getString(NAME, "slimeChildren",  MODID + ":blue_slime", "The type of slime the boss will split into on death\n Must be a BetterSlimes slime");
+
+        damageMultiplier = config.getFloat(NAME, "damageMultiplier", 1.0F, 0, MAX, "Attack damage multiplier of King Slime");
 
         configLoaded = true;
     }

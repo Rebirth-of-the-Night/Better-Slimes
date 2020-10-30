@@ -7,6 +7,8 @@ import com.mic.betterslimes.entity.slimes.KingSlime;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
+import static com.mic.betterslimes.entity.EntityBetterSlime.damageMultiplier;
+
 public class ConfigHandler {
 	public static Configuration config;
 	public static boolean startupMessage = true;
@@ -29,6 +31,8 @@ public class ConfigHandler {
 	public static int knightSlime = 6;
 	public static int splitChance = 50;
 
+	public static final int MAX = Short.MAX_VALUE;
+
 
 	public ConfigHandler(ModBase mod, String modID) {
 		this.mod = mod;
@@ -46,10 +50,11 @@ public class ConfigHandler {
 		startupMessage = config.getBoolean("Start-Up Message?", category, true, "Give a start-up thank you?");
 		kingChance = config.getInt("King Slime Spawn Chance", category, 5, 0, 100, "0 for never and 100 for every night.");
 		splitChance = config.getInt("Slime Splitting Chance", category, 50, 0, 100, "0 for never and 100 for always.");
+		damageMultiplier = config.getFloat("Custom slime damage multiplier", category, 1, 0, MAX, "");
 
-		
+
 		category = "Slime Spawn Chances";
-		
+
 		blueSlime = config.getInt("Blue Slime Spawn Chance", category, 14, 0, 100, "0 for never and 100 for always.");
 		redSlime = config.getInt("Red Slime Spawn Chance", category, 7, 0, 100, "0 for never and 100 for always.");
 		yellowSlime = config.getInt("Yellow Slime Spawn Chance", category, 4, 0, 100, "0 for never and 100 for always.");
@@ -62,6 +67,7 @@ public class ConfigHandler {
 		ironSlime = config.getInt("Iron Slime Spawn Chance", category, 40, 0, 100, "0 for never and 100 for always.");
 		goldSlime = config.getInt("Gold Slime Spawn Chance", category, 20, 0, 100, "0 for never and 100 for always.");
 		knightSlime = config.getInt("Knight Slime Spawn Chance", category, 6, 0, 100, "0 for never and 100 for always.");
+
 
 		KingSlime.initConfig();
 
