@@ -95,7 +95,6 @@ public class EntityInit {
                     EntityRegistry.addSpawn(GoldSlime.class, ConfigHandler.goldSlime, 1, 3, EnumCreatureType.MONSTER, b);
                 if (ConfigHandler.knightSlime > 0)
                     EntityRegistry.addSpawn(KnightSlime.class, ConfigHandler.knightSlime, 1, 7, EnumCreatureType.MONSTER, b);
-
             }
         }
     }

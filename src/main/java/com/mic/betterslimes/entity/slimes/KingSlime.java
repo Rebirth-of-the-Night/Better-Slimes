@@ -53,6 +53,7 @@ public class KingSlime extends EntityBetterSlime implements ISpecialSlime {
             BossInfo.Color.BLUE, BossInfo.Overlay.PROGRESS));
     private static final DataParameter<Integer> SPAWN_TIME = EntityDataManager.<Integer>createKey(KingSlime.class,
             DataSerializers.VARINT);
+
     public static final String NAME = "KingSlime";
     public static final int MAX = Short.MAX_VALUE;
 
@@ -96,14 +97,19 @@ public class KingSlime extends EntityBetterSlime implements ISpecialSlime {
         leapVelocityMultiplierXZ = config.getFloat(NAME, "leapVelocityMultiplierXZ", 1.0F, 0, MAX, "Horizontal speed all entities affected by the leap attack get");
 
         explodeDamage = config.getFloat(NAME, "explodeDamage", 18.0F, 0, MAX, "Damage the leap attack deals");
-        explodeRange = config.getInt(NAME, "explodeDamage", 32, 0, MAX, "Damage the leap attack deals");
+        explodeRange = config.getInt(NAME, "explodeRange", 10, 0, MAX, "Range of the leap attack");
         movementSpeedMultiplier = config.getFloat(NAME, "movementSpeedMultiplier", 1.0F, 0, MAX, "Amount by which the movement speed of " + NAME + " is multiplied");
 
         size = config.getInt(NAME, "movementSpeedMultiplier", 7, 0, MAX, "Amount by which the movement speed of " + NAME + "is multiplied");
 
         spawnMinions = config.getBoolean(NAME, "spawnMinions", false, "Ability of the boss to summon little slaves to aid him in battle");
+        if (!spawnMinions) {
+            splitChance = 0;
+        }
 
         splitSlimeString = config.getString(NAME, "slimeChildren",  MODID + ":blue_slime", "The type of slime the boss will split into on death\n Must be a BetterSlimes slime");
+
+        damageMultiplier = config.getFloat(NAME, "damageMultiplier", 1.0F, 0, MAX, "Attack damage multiplier of King Slime");
 
         configLoaded = true;
     }
@@ -181,10 +187,15 @@ public class KingSlime extends EntityBetterSlime implements ISpecialSlime {
     }
 
     @Override
+    public boolean canBePushed()
+    {
+        return false;
+    }
+
+    @Override
     public void addTrackingPlayer(EntityPlayerMP player) {
         super.addTrackingPlayer(player);
         this.bossInfo.addPlayer(player);
-
     }
 
     public void setCustomNameTag(String name) {
@@ -238,10 +249,14 @@ public class KingSlime extends EntityBetterSlime implements ISpecialSlime {
 
     @Override
     protected EntityBetterSlime createInstance() {
-        if (EntityBetterSlime.class.isAssignableFrom(SplitSlime)) {
-            return (EntityBetterSlime)ForgeRegistries.ENTITIES.getValue(new ResourceLocation(splitSlimeString)).newInstance(this.world);
+        if (spawnMinions) {
+            if (EntityBetterSlime.class.isAssignableFrom(SplitSlime)) {
+                return (EntityBetterSlime) ForgeRegistries.ENTITIES.getValue(new ResourceLocation(splitSlimeString)).newInstance(this.world);
+            } else {
+                return new BlueSlime(this.world);
+            }
         } else {
-            return new BlueSlime(this.world);
+            return null;
         }
     }
 
@@ -268,6 +283,7 @@ public class KingSlime extends EntityBetterSlime implements ISpecialSlime {
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
         this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(40.0D);
+        this.getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(64.0D);
     }
 
     @Nullable
@@ -290,7 +306,7 @@ public class KingSlime extends EntityBetterSlime implements ISpecialSlime {
             this.playSound(SoundEvents.BLOCK_CLOTH_PLACE, 2.0F, 0.3F);
         this.playSound(SoundEvents.BLOCK_SAND_FALL, 2.0F, 0.8F);
         this.setPositionAndUpdate(this.posX, this.posY + 2, this.posZ);
-        if (!this.world.isRemote) this.addVelocity(d0 / 6, 2, d1 / 6);
+        if (!this.world.isRemote) this.setVelocity(d0 / 7, 2, d1 / 7);
     }
 
     private void explode() {
@@ -301,16 +317,12 @@ public class KingSlime extends EntityBetterSlime implements ISpecialSlime {
         this.targetLastPosX = null;
         this.targetLastPosZ = null;
 
-        List<EntityLivingBase> e = this.world.getEntitiesWithinAABB(EntityLivingBase.class, new AxisAlignedBB(this.getPosition()).grow(explodeRange, 32, explodeRange), new Predicate<EntityLivingBase>() {
-            public boolean apply(@Nullable EntityLivingBase entity) {
-                return true;
-            }
-        });
+        List<EntityLivingBase> e = this.world.getEntitiesWithinAABB(EntityLivingBase.class, new AxisAlignedBB(this.getPosition()).grow(explodeRange, 32, explodeRange), entity -> true);
 
         for (EntityLivingBase entity : e) {
             double dist = this.getDistanceSq(entity) + 1;
 
-            if (entity != this && dist < 512) {
+            if (entity != this && this.getDistance(entity) < explodeRange) {
                 {
                     entity.setPositionAndUpdate(entity.posX, entity.posY + 1.5, entity.posZ);
                     entity.addVelocity((0.8 / (entity.posX - this.posX)) * leapVelocityMultiplierXZ, MathHelper.clamp(32 / (dist) * leapVelocityMultiplierY, 1, 16), 0.8 / (entity.posZ - this.posZ) * leapVelocityMultiplierXZ);
