@@ -47,11 +47,10 @@ public class ConfigHandler {
 		// Drop chances
 		category = "Better Slimes Config";
 
-		startupMessage = config.getBoolean("Start-Up Message?", category, true, "Give a start-up thank you?");
+		startupMessage = config.getBoolean("Start-Up Message?", category, false, "Give a start-up thank you?");
 		kingChance = config.getInt("King Slime Spawn Chance", category, 5, 0, 100, "0 for never and 100 for every night.");
 		splitChance = config.getInt("Slime Splitting Chance", category, 50, 0, 100, "0 for never and 100 for always.");
 		damageMultiplier = config.getFloat("Custom slime damage multiplier", category, 1, 0, MAX, "");
-
 
 		category = "Slime Spawn Chances";
 
