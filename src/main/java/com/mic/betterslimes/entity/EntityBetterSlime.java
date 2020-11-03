@@ -78,7 +78,7 @@ public class EntityBetterSlime extends EntitySlime {
 	@Override
 	public void onUpdate() {
 		super.onUpdate();
-		if(rand.nextInt(6) < this.getSlimeSize() * 2)
+		if (rand.nextInt(6) < this.getSlimeSize() * 2)
 		if (valentinesDay) {
 			int dis = 6;
 			BetterSlimes.proxy.spawnParticle(getEntityWorld(), EnumParticleTypes.HEART,
