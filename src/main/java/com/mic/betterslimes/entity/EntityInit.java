@@ -79,21 +79,21 @@ public class EntityInit {
         }
         for (Biome b : ForgeRegistries.BIOMES.getValuesCollection()) {
             if (!(b.equals(Biomes.HELL) || b.equals(Biomes.SKY))) {
-                if (ConfigHandler.blueSlime > 0)
+//                if (ConfigHandler.blueSlime > 0)
                     EntityRegistry.addSpawn(BlueSlime.class, ConfigHandler.blueSlime, 0, 6, EnumCreatureType.MONSTER, b);
-                if (ConfigHandler.redSlime > 0)
+//                if (ConfigHandler.redSlime > 0)
                     EntityRegistry.addSpawn(RedSlime.class, ConfigHandler.redSlime, 0, 5, EnumCreatureType.MONSTER, b);
-                if (ConfigHandler.yellowSlime > 0)
+//                if (ConfigHandler.yellowSlime > 0)
                     EntityRegistry.addSpawn(YellowSlime.class, ConfigHandler.yellowSlime, 0, 4, EnumCreatureType.MONSTER, b);
-                if (ConfigHandler.purpleSlime > 0)
+//                if (ConfigHandler.purpleSlime > 0)
                     EntityRegistry.addSpawn(PurpleSlime.class, ConfigHandler.purpleSlime, 0, 4, EnumCreatureType.MONSTER, b);
-                if (ConfigHandler.blackSlime > 0)
+//                if (ConfigHandler.blackSlime > 0)
                     EntityRegistry.addSpawn(BlackSlime.class, ConfigHandler.blackSlime, 0, 6, EnumCreatureType.MONSTER, b);
-                if (ConfigHandler.ironSlime > 0)
+//                if (ConfigHandler.ironSlime > 0)
                     EntityRegistry.addSpawn(IronSlime.class, ConfigHandler.ironSlime, 0, 2, EnumCreatureType.MONSTER, b);
-                if (ConfigHandler.goldSlime > 0)
+//                if (ConfigHandler.goldSlime > 0)
                     EntityRegistry.addSpawn(GoldSlime.class, ConfigHandler.goldSlime, 0, 3, EnumCreatureType.MONSTER, b);
-                if (ConfigHandler.knightSlime > 0)
+//                if (ConfigHandler.knightSlime > 0)
                     EntityRegistry.addSpawn(KnightSlime.class, ConfigHandler.knightSlime, 0, 7, EnumCreatureType.MONSTER, b);
             }
         }
