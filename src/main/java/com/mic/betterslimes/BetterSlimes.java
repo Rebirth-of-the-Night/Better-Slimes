@@ -49,11 +49,10 @@ public class BetterSlimes extends ModBase {
 		ConfigHandler cfh = new ConfigHandler(this, MODID);
 		itemBuilder = new ItemBuilder(MODID);
 		items = new ModItems(itemBuilder);
-		EntityInit.registerEntity();
 		proxy.registerRenders();
 
 		super.preInit(event);
-		
+		EntityInit.registerEntity();
 	}
 
 	@Override

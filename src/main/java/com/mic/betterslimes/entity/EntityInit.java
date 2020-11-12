@@ -51,50 +51,50 @@ public class EntityInit {
     public static void addToBiomes() {
         System.out.println("Adding spawns to biomes");
         if (ConfigHandler.jungleSlime > 0)
-            EntityRegistry.addSpawn(JungleSlime.class, ConfigHandler.jungleSlime, 1, 6, EnumCreatureType.MONSTER, Biomes.JUNGLE);
+            EntityRegistry.addSpawn(JungleSlime.class, ConfigHandler.jungleSlime, 0, 6, EnumCreatureType.MONSTER, Biomes.JUNGLE);
         if (ConfigHandler.jungleSlime > 0)
-            EntityRegistry.addSpawn(JungleSlime.class, ConfigHandler.jungleSlime, 1, 6, EnumCreatureType.MONSTER, Biomes.JUNGLE_EDGE);
+            EntityRegistry.addSpawn(JungleSlime.class, ConfigHandler.jungleSlime, 0, 6, EnumCreatureType.MONSTER, Biomes.JUNGLE_EDGE);
         if (ConfigHandler.jungleSlime > 0)
-            EntityRegistry.addSpawn(JungleSlime.class, ConfigHandler.jungleSlime, 1, 6, EnumCreatureType.MONSTER, Biomes.JUNGLE_HILLS);
+            EntityRegistry.addSpawn(JungleSlime.class, ConfigHandler.jungleSlime, 0, 6, EnumCreatureType.MONSTER, Biomes.JUNGLE_HILLS);
         if (ConfigHandler.jungleSlime > 0)
-            EntityRegistry.addSpawn(JungleSlime.class, ConfigHandler.jungleSlime, 1, 6, EnumCreatureType.MONSTER, Biomes.MUTATED_JUNGLE);
+            EntityRegistry.addSpawn(JungleSlime.class, ConfigHandler.jungleSlime, 0, 6, EnumCreatureType.MONSTER, Biomes.MUTATED_JUNGLE);
         if (ConfigHandler.jungleSlime > 0)
-            EntityRegistry.addSpawn(JungleSlime.class, ConfigHandler.jungleSlime, 1, 6, EnumCreatureType.MONSTER, Biomes.MUTATED_JUNGLE_EDGE);
+            EntityRegistry.addSpawn(JungleSlime.class, ConfigHandler.jungleSlime, 0, 6, EnumCreatureType.MONSTER, Biomes.MUTATED_JUNGLE_EDGE);
 
         if (ConfigHandler.skySlime > 0)
-            EntityRegistry.addSpawn(HauntedSlime.class, ConfigHandler.skySlime, 1, 1, EnumCreatureType.MONSTER, Biomes.HELL);
+            EntityRegistry.addSpawn(HauntedSlime.class, ConfigHandler.skySlime, 0, 1, EnumCreatureType.MONSTER, Biomes.HELL);
 
         if (ConfigHandler.skySlime > 0)
-            EntityRegistry.addSpawn(SpectralSlime.class, ConfigHandler.skySlime, 1, 1, EnumCreatureType.MONSTER, Biomes.SKY);
+            EntityRegistry.addSpawn(SpectralSlime.class, ConfigHandler.skySlime, 0, 1, EnumCreatureType.MONSTER, Biomes.SKY);
 
         for (Biome b : BiomeDictionary.getBiomes(BiomeDictionary.Type.SNOWY)) {
             // System.out.println(b.getBiomeName());
             if (!(b.equals(Biomes.HELL) || b.equals(Biomes.SKY)) && ConfigHandler.iceSlime > 0)
-                EntityRegistry.addSpawn(IceSlime.class, ConfigHandler.iceSlime, 1, 3, EnumCreatureType.MONSTER, b);
+                EntityRegistry.addSpawn(IceSlime.class, ConfigHandler.iceSlime, 0, 3, EnumCreatureType.MONSTER, b);
         }
         for (Biome b : BiomeDictionary.getBiomes(BiomeDictionary.Type.DRY)) {
             // System.out.println(b.getBiomeName());
             if (!(b.equals(Biomes.HELL) || b.equals(Biomes.SKY)) && ConfigHandler.sandSlime > 0)
-                EntityRegistry.addSpawn(SandSlime.class, ConfigHandler.sandSlime, 1, 6, EnumCreatureType.MONSTER, b);
+                EntityRegistry.addSpawn(SandSlime.class, ConfigHandler.sandSlime, 0, 6, EnumCreatureType.MONSTER, b);
         }
         for (Biome b : ForgeRegistries.BIOMES.getValuesCollection()) {
             if (!(b.equals(Biomes.HELL) || b.equals(Biomes.SKY))) {
-                if (ConfigHandler.blueSlime > 0)
-                    EntityRegistry.addSpawn(BlueSlime.class, ConfigHandler.blueSlime, 1, 6, EnumCreatureType.MONSTER, b);
-                if (ConfigHandler.redSlime > 0)
-                    EntityRegistry.addSpawn(RedSlime.class, ConfigHandler.redSlime, 1, 5, EnumCreatureType.MONSTER, b);
-                if (ConfigHandler.yellowSlime > 0)
-                    EntityRegistry.addSpawn(YellowSlime.class, ConfigHandler.yellowSlime, 1, 4, EnumCreatureType.MONSTER, b);
-                if (ConfigHandler.purpleSlime > 0)
-                    EntityRegistry.addSpawn(PurpleSlime.class, ConfigHandler.purpleSlime, 1, 4, EnumCreatureType.MONSTER, b);
-                if (ConfigHandler.blackSlime > 0)
-                    EntityRegistry.addSpawn(BlackSlime.class, ConfigHandler.blackSlime, 1, 6, EnumCreatureType.MONSTER, b);
-                if (ConfigHandler.ironSlime > 0)
-                    EntityRegistry.addSpawn(IronSlime.class, ConfigHandler.ironSlime, 1, 2, EnumCreatureType.MONSTER, b);
-                if (ConfigHandler.goldSlime > 0)
-                    EntityRegistry.addSpawn(GoldSlime.class, ConfigHandler.goldSlime, 1, 3, EnumCreatureType.MONSTER, b);
-                if (ConfigHandler.knightSlime > 0)
-                    EntityRegistry.addSpawn(KnightSlime.class, ConfigHandler.knightSlime, 1, 7, EnumCreatureType.MONSTER, b);
+//                if (ConfigHandler.blueSlime > 0)
+                    EntityRegistry.addSpawn(BlueSlime.class, ConfigHandler.blueSlime, 0, 6, EnumCreatureType.MONSTER, b);
+//                if (ConfigHandler.redSlime > 0)
+                    EntityRegistry.addSpawn(RedSlime.class, ConfigHandler.redSlime, 0, 5, EnumCreatureType.MONSTER, b);
+//                if (ConfigHandler.yellowSlime > 0)
+                    EntityRegistry.addSpawn(YellowSlime.class, ConfigHandler.yellowSlime, 0, 4, EnumCreatureType.MONSTER, b);
+//                if (ConfigHandler.purpleSlime > 0)
+                    EntityRegistry.addSpawn(PurpleSlime.class, ConfigHandler.purpleSlime, 0, 4, EnumCreatureType.MONSTER, b);
+//                if (ConfigHandler.blackSlime > 0)
+                    EntityRegistry.addSpawn(BlackSlime.class, ConfigHandler.blackSlime, 0, 6, EnumCreatureType.MONSTER, b);
+//                if (ConfigHandler.ironSlime > 0)
+                    EntityRegistry.addSpawn(IronSlime.class, ConfigHandler.ironSlime, 0, 2, EnumCreatureType.MONSTER, b);
+//                if (ConfigHandler.goldSlime > 0)
+                    EntityRegistry.addSpawn(GoldSlime.class, ConfigHandler.goldSlime, 0, 3, EnumCreatureType.MONSTER, b);
+//                if (ConfigHandler.knightSlime > 0)
+                    EntityRegistry.addSpawn(KnightSlime.class, ConfigHandler.knightSlime, 0, 7, EnumCreatureType.MONSTER, b);
             }
         }
     }

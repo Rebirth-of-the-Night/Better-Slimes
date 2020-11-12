@@ -107,7 +107,7 @@ public class KingSlime extends EntityBetterSlime implements ISpecialSlime {
             splitChance = 0;
         }
 
-        splitSlimeString = config.getString(NAME, "slimeChildren",  MODID + ":blue_slime", "The type of slime the boss will split into on death\n Must be a BetterSlimes slime");
+        splitSlimeString = config.getString(NAME, "slimeChildren", MODID + ":blue_slime", "The type of slime the boss will split into on death\n Must be a BetterSlimes slime");
 
         damageMultiplier = config.getFloat(NAME, "damageMultiplier", 1.0F, 0, MAX, "Attack damage multiplier of King Slime");
 
@@ -187,8 +187,7 @@ public class KingSlime extends EntityBetterSlime implements ISpecialSlime {
     }
 
     @Override
-    public boolean canBePushed()
-    {
+    public boolean canBePushed() {
         return false;
     }
 
@@ -221,7 +220,7 @@ public class KingSlime extends EntityBetterSlime implements ISpecialSlime {
         super.readEntityFromNBT(compound);
         if (this.hasCustomName())
             this.bossInfo.setName(this.getDisplayName());
-        
+
         if (compound.hasKey("Spawn"))
             this.setSpawnTime(compound.getInteger("Spawn"));
         if (configLoaded) {
@@ -249,14 +248,19 @@ public class KingSlime extends EntityBetterSlime implements ISpecialSlime {
 
     @Override
     protected EntityBetterSlime createInstance() {
-        if (spawnMinions) {
-            if (EntityBetterSlime.class.isAssignableFrom(SplitSlime)) {
-                return (EntityBetterSlime) ForgeRegistries.ENTITIES.getValue(new ResourceLocation(splitSlimeString)).newInstance(this.world);
-            } else {
-                return new BlueSlime(this.world);
-            }
+        if (EntityBetterSlime.class.isAssignableFrom(SplitSlime)) {
+            return (EntityBetterSlime) ForgeRegistries.ENTITIES.getValue(new ResourceLocation(splitSlimeString)).newInstance(this.world);
         } else {
-            return null;
+            return new BlueSlime(this.world);
+        }
+    }
+
+    @Override
+    public void setDead() {
+        if (!spawnMinions) {
+            this.isDead = true;
+        } else {
+            super.setDead();
         }
     }
 
@@ -303,7 +307,7 @@ public class KingSlime extends EntityBetterSlime implements ISpecialSlime {
             d0 = 0; //leapTarget.posX - this.posX;
             d1 = 0; //leapTarget.posZ - this.posZ;
         }
-            this.playSound(SoundEvents.BLOCK_CLOTH_PLACE, 2.0F, 0.3F);
+        this.playSound(SoundEvents.BLOCK_CLOTH_PLACE, 2.0F, 0.3F);
         this.playSound(SoundEvents.BLOCK_SAND_FALL, 2.0F, 0.8F);
         this.setPositionAndUpdate(this.posX, this.posY + 2, this.posZ);
         if (!this.world.isRemote) this.setVelocity(d0 / 7, 2, d1 / 7);
