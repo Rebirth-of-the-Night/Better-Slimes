@@ -17,5 +17,11 @@ Changes from the original project:
 - Added Slime Boss leap attack.
 
 - The entity which KingSlime splits to on death is now configurable. Also now toggleable.
+
+- King Slime now has an attack attribute
+
+- Setting a slime to 0 spawn rate in the config now actually disables it
+
+- BetterSlimes now have a config variable that multiplies their dealt damage
  
 
