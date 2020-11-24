@@ -449,6 +449,13 @@ public class KingSlime extends EntityBetterSlime implements ISpecialSlime {
     {
     }
 
+    // Disable water pushing
+    @Override
+    public boolean isPushedByWater()
+    {
+        return false;
+    }
+
     // Disable fall damage so the boss doesn't kill itself when it leaps
     @SubscribeEvent
     public void LivingFallEvent(LivingFallEvent event) {
