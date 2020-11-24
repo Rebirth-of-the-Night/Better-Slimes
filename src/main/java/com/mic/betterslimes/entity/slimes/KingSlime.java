@@ -443,6 +443,12 @@ public class KingSlime extends EntityBetterSlime implements ISpecialSlime {
         }
     }
 
+    // Disable cobweb slowdown
+    @Override
+    public void setInWeb()
+    {
+    }
+
     // Disable fall damage so the boss doesn't kill itself when it leaps
     @SubscribeEvent
     public void LivingFallEvent(LivingFallEvent event) {
