@@ -120,6 +120,8 @@ public class KingSlime extends EntityBetterSlime implements ISpecialSlime {
         this.setHealthModifier(26);
         this.setSlimeSize(size, true);
 
+        this.isImmuneToFire = true;
+
         this.timeSinceIgnited = 0;
         this.fuseTime = 30;
         this.dataManager.register(STATE, Integer.valueOf(-1));
@@ -455,6 +457,21 @@ public class KingSlime extends EntityBetterSlime implements ISpecialSlime {
     {
         return false;
     }
+
+    // Makes entity unaffected by water
+    @Override
+    public boolean isInWater()
+    {
+        return false;
+    }
+
+    // Makes entity unaffected by lava
+    @Override
+    public boolean isInLava()
+    {
+        return false;
+    }
+
 
     // Disable fall damage so the boss doesn't kill itself when it leaps
     @SubscribeEvent
