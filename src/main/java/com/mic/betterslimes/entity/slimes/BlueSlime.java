@@ -5,6 +5,7 @@ import javax.annotation.Nullable;
 import com.mic.betterslimes.BetterSlimes;
 import com.mic.betterslimes.entity.EntityBetterSlime;
 
+import com.mic.betterslimes.entity.ISpecialSlime;
 import net.minecraft.client.particle.ParticleBreaking;
 import net.minecraft.init.Items;
 import net.minecraft.util.ResourceLocation;
@@ -17,7 +18,7 @@ import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.storage.loot.LootTableList;
 import net.minecraftforge.common.BiomeDictionary;
 
-public class BlueSlime extends EntityBetterSlime {
+public class BlueSlime extends EntityBetterSlime implements ISpecialSlime {
 
 	public BlueSlime(World worldIn) {
 		super(worldIn);
