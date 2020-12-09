@@ -1,5 +1,6 @@
 package com.mic.betterslimes;
 
+import MICDeps.Reference;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.storage.loot.LootTableList;
@@ -23,11 +24,8 @@ import MICDeps.ModBase;
 import MICDeps.items.ItemBuilder;
 import MICDeps.util.handlers.ConfigHandler;
 
-@Mod(modid = BetterSlimes.MODID, name = BetterSlimes.NAME, version = BetterSlimes.VERSION)
+@Mod(modid = Reference.MODID, name = Reference.MODNAME, version = Reference.VERSION)
 public class BetterSlimes extends ModBase {
-	public static final String MODID = "betterslimes";
-	public static final String NAME = "Better Slimes";
-	public static final String VERSION = "1.0";	
 	public static ResourceLocation blueSlimeLT = LootTableList.register(new ResourceLocation("betterslimes","blue_slime"));
 	public static ResourceLocation redSlimeLT = LootTableList.register(new ResourceLocation("betterslimes","red_slime"));
 	public static ResourceLocation blackSlimeLT = LootTableList.register(new ResourceLocation("betterslimes","black_slime"));
@@ -46,8 +44,8 @@ public class BetterSlimes extends ModBase {
 	@Override
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event) { 
-		ConfigHandler cfh = new ConfigHandler(this, MODID);
-		itemBuilder = new ItemBuilder(MODID);
+		ConfigHandler cfh = new ConfigHandler(this, Reference.MODID);
+		itemBuilder = new ItemBuilder(Reference.MODID);
 		items = new ModItems(itemBuilder);
 		proxy.registerRenders();
 
@@ -60,10 +58,5 @@ public class BetterSlimes extends ModBase {
 	public void init(FMLInitializationEvent event) {
 		items.oreDict();
 		super.init(event);
-		
-
 	}
-
-	
-
 }

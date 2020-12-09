@@ -2,6 +2,7 @@ package com.mic.betterslimes.entity.slimes;
 
 import javax.annotation.Nullable;
 
+import MICDeps.Reference;
 import com.google.common.base.Predicate;
 import com.mic.betterslimes.BetterSlimes;
 import com.mic.betterslimes.entity.EntityBetterSlime;
@@ -44,11 +45,10 @@ import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import java.util.List;
 
 import static MICDeps.util.handlers.ConfigHandler.config;
-import static com.mic.betterslimes.BetterSlimes.MODID;
 
 public class KingSlime extends EntityBetterSlime implements ISpecialSlime {
 
-    public static final String MODID = BetterSlimes.MODID;
+    public static final String MODID = Reference.MODID;
 
     private final BossInfoServer bossInfo = (BossInfoServer) (new BossInfoServer(this.getDisplayName(),
             BossInfo.Color.BLUE, BossInfo.Overlay.PROGRESS));
