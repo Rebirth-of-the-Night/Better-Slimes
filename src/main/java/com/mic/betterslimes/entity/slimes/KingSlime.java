@@ -16,6 +16,7 @@ import net.minecraft.entity.monster.EntitySlime;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Biomes;
 import net.minecraft.init.SoundEvents;
+import net.minecraft.item.Item;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
@@ -87,6 +88,7 @@ public class KingSlime extends EntityBetterSlime implements ISpecialSlime {
     public static String splitSlimeString;
 
     protected Class<? extends Entity> SplitSlime;
+    private boolean wasOnGround = false;
 
     public static void initConfig() {
         config.addCustomCategoryComment(NAME, "Configuration options for the King Slime boss");
@@ -389,7 +391,32 @@ public class KingSlime extends EntityBetterSlime implements ISpecialSlime {
         }
     }
 
+    // Needs to be true in order to disable vanilla slime particles.
+    // Custom particles are implemented in the OnUpdate method
+    @Override
+    protected boolean spawnCustomParticles() { return true; }
+
+    @Override
     public void onUpdate() {
+        if (this.onGround && !this.wasOnGround)
+        {
+            int i = this.getSlimeSize();
+            for (int j = 0; j < i * 8; ++j)
+            {
+                float f = this.rand.nextFloat() * ((float)Math.PI * 2F);
+                float f1 = this.rand.nextFloat() * 0.5F + 0.5F;
+                float f2 = MathHelper.sin(f) * (float)i * 0.5F * f1;
+                float f3 = MathHelper.cos(f) * (float)i * 0.5F * f1;
+                World world = this.world;
+                double d0 = this.posX + (double)f2;
+                double d1 = this.posZ + (double)f3;
+                // Blue slime particles
+                world.spawnParticle(EnumParticleTypes.ITEM_CRACK, d0, this.getEntityBoundingBox().minY, d1, 0.0D, 0.0D, 0.0D, Item.getIdFromItem(Item.getByNameOrId("betterslimes:blue_slime")));
+            }
+        }
+
+        this.wasOnGround = this.onGround;
+
         if (this.isEntityAlive()) {
             if (this.bossTimer <= leapWarning) {
                 this.setCreeperState(1);

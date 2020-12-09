@@ -42,8 +42,6 @@ public class CommonProxy {
 
 	}
 	
-	
-	
 	@EventHandler
 	public void serverInit(FMLServerStartingEvent event) {
 		RegistryHandler.serverRegistries(event);
@@ -54,5 +52,4 @@ public class CommonProxy {
 		// TODO Auto-generated method stub
 		
 	}
-
 }
