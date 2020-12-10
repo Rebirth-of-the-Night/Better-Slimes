@@ -410,8 +410,11 @@ public class KingSlime extends EntityBetterSlime implements ISpecialSlime {
                 World world = this.world;
                 double d0 = this.posX + (double)f2;
                 double d1 = this.posZ + (double)f3;
-                // Blue slime particles
-                world.spawnParticle(EnumParticleTypes.ITEM_CRACK, d0, this.getEntityBoundingBox().minY, d1, 0.0D, 0.0D, 0.0D, Item.getIdFromItem(Item.getByNameOrId("betterslimes:blue_slime")));
+                // Red slime particles
+                world.spawnParticle(EnumParticleTypes.ITEM_CRACK, d0, this.getEntityBoundingBox().minY, d1, 0.0D, 0.0D, 0.0D, Item.getIdFromItem(Item.getByNameOrId("betterslimes:red_slime")));
+//                if (j % 2 == 0) {
+                    world.spawnParticle(EnumParticleTypes.LAVA, d0, this.getEntityBoundingBox().minY, d1, 0.0D, 0.0D, 0.0D);
+//                }
             }
         }
 

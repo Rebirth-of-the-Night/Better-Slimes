@@ -45,7 +45,7 @@ public class RegistryHandler {
 	boolean spawning = false;
 
 	public static void initRegistries() {
-
+		SoundsHandler.registerSounds();
 	}
 
 	public static void preInitRegistries(FMLPreInitializationEvent event) {

@@ -1,6 +1,7 @@
 package com.mic.betterslimes;
 
 import MICDeps.Reference;
+import MICDeps.util.handlers.RegistryHandler;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.storage.loot.LootTableList;
@@ -56,6 +57,7 @@ public class BetterSlimes extends ModBase {
 	@Override
 	@EventHandler
 	public void init(FMLInitializationEvent event) {
+		RegistryHandler.initRegistries();
 		items.oreDict();
 		super.init(event);
 	}

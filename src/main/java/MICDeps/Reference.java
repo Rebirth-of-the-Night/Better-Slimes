@@ -1,4 +1,4 @@
-package MICDeps;    
+package MICDeps;
 
 public class Reference
 {
