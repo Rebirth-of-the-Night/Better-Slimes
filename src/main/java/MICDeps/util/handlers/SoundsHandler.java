@@ -6,11 +6,11 @@ import net.minecraft.util.SoundEvent;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 
 public class SoundsHandler {
-    public static SoundEvent ENTITY_KING_SLIME_HURT, ENTITY_KING_SLIME_DEATH;
+    public static SoundEvent ENTITY_QUAZAR_HURT, ENTITY_QUAZAR_DEATH;
 
     public static void registerSounds() {
-//        ENTITY_KING_SLIME_HURT = registerSound("entity.king_slime.hurt");
-//        ENTITY_KING_SLIME_DEATH = registerSound("entity.king_slime.death");
+//        ENTITY_QUAZAR_HURT = registerSound("entity.quazar.hurt");
+//        ENTITY_QUAZAR_DEATH = registerSound("entity.quazar.death");
     }
 
     private static SoundEvent registerSound(String name) {

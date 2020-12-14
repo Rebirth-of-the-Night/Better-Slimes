@@ -39,7 +39,7 @@ public class EntityInit {
         registerEntity("jungle_slime", JungleSlime.class, 117, view, 30464, 55808);
         registerEntity("sand_slime", SandSlime.class, 118, view, 13024949, 14802613);
         registerEntity("spectral_slime", SpectralSlime.class, 119, view, 10106269, 000000);
-        registerEntity("king_slime", Quazar.class, 120, view, 1186255, 16776960);
+        registerEntity("quazar", Quazar.class, 120, view, 1186255, 16776960);
         registerEntity("iron_slime", IronSlime.class, 121, view, 7172208, 11382677);
         registerEntity("gold_slime", GoldSlime.class, 122, view, 14404608, 16776960);
         registerEntity("knight_slime", KnightSlime.class, 123, view, 7172208, 255);

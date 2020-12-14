@@ -286,7 +286,7 @@ public class Quazar extends EntityBetterSlime implements ISpecialSlime {
 
     @Nullable
     protected ResourceLocation getLootTable() {
-        return BetterSlimes.kingSlimeLT;
+        return BetterSlimes.quazarLT;
     }
 
     protected void leap(EntityLivingBase leapTarget) {

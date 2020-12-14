@@ -11,14 +11,11 @@ public class RenderSlime extends RenderLiving<EntityBetterSlime> {
 	
 	String modID;
 	String name;
-	
-	
-	
+
 	public final String TEXTURES = ":textures/entity/slime/";
 
 	public RenderSlime(String modId, String name, RenderManager manager) 
 	{
-		
 		super(manager, new ModelSlime(16), 0.25F);
         this.addLayer(new LayerSlimeGel(this));
 		this.modID = modId;	

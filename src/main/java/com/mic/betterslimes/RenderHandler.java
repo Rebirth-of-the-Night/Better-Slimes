@@ -78,7 +78,7 @@ public class RenderHandler {
 			RenderingRegistry.registerEntityRenderingHandler(Quazar.class, new IRenderFactory<Quazar>() {
 				@Override
 				public Render<? super Quazar> createRenderFor(RenderManager manager) {
-					return new RenderSlime(modID, "king_slime", manager);
+					return new RenderSlime(modID, "quazar", manager);
 				}
 			});
 			
