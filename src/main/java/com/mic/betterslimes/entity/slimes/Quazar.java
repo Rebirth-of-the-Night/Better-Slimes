@@ -3,7 +3,6 @@ package com.mic.betterslimes.entity.slimes;
 import javax.annotation.Nullable;
 
 import MICDeps.Reference;
-import com.google.common.base.Predicate;
 import com.mic.betterslimes.BetterSlimes;
 import com.mic.betterslimes.entity.EntityBetterSlime;
 import com.mic.betterslimes.entity.ISpecialSlime;
@@ -12,10 +11,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.boss.EntityWither;
-import net.minecraft.entity.monster.EntitySlime;
 import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.init.Biomes;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
 import net.minecraft.nbt.NBTTagCompound;
@@ -26,36 +22,30 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.AxisAlignedBB;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.BossInfo;
 import net.minecraft.world.BossInfoServer;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
-import net.minecraft.world.biome.Biome;
-import net.minecraft.world.chunk.Chunk;
-import net.minecraft.world.storage.loot.LootTableList;
-import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.living.LivingFallEvent;
-import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 
 import java.util.List;
-
 import static MICDeps.util.handlers.ConfigHandler.config;
 
-public class KingSlime extends EntityBetterSlime implements ISpecialSlime {
+// Renamed from King Slime to Quazar
+public class Quazar extends EntityBetterSlime implements ISpecialSlime {
 
     public static final String MODID = Reference.MODID;
 
     private final BossInfoServer bossInfo = (BossInfoServer) (new BossInfoServer(this.getDisplayName(),
             BossInfo.Color.BLUE, BossInfo.Overlay.PROGRESS));
-    private static final DataParameter<Integer> SPAWN_TIME = EntityDataManager.<Integer>createKey(KingSlime.class,
+    private static final DataParameter<Integer> SPAWN_TIME = EntityDataManager.<Integer>createKey(Quazar.class,
             DataSerializers.VARINT);
 
-    public static final String NAME = "KingSlime";
+    public static final String NAME = "Quazar";
     public static final int MAX = Short.MAX_VALUE;
 
     protected boolean explode = false;
@@ -91,7 +81,7 @@ public class KingSlime extends EntityBetterSlime implements ISpecialSlime {
     private boolean wasOnGround = false;
 
     public static void initConfig() {
-        config.addCustomCategoryComment(NAME, "Configuration options for the King Slime boss");
+        config.addCustomCategoryComment(NAME, "Configuration options for the Quazar boss");
         leapCooldown = config.getInt(NAME, "leapCooldown", 160, 0, MAX, "Cooldown between leap attacks in ticks");
         leapWarning = config.getInt(NAME, "leapWarning", 40, 0, MAX, "Length of the animation the boss does before leap attacks in ticks. \nMust be longer than leapCooldown");
 
@@ -111,12 +101,12 @@ public class KingSlime extends EntityBetterSlime implements ISpecialSlime {
 
         splitSlimeString = config.getString(NAME, "slimeChildren", MODID + ":blue_slime", "The type of slime the boss will split into on death\n Must be a BetterSlimes slime");
 
-        damageMultiplier = config.getFloat(NAME, "damageMultiplier", 1.0F, 0, MAX, "Attack damage multiplier of King Slime");
+        damageMultiplier = config.getFloat(NAME, "damageMultiplier", 1.0F, 0, MAX, "Attack damage multiplier of Quazar");
 
         configLoaded = true;
     }
 
-    public KingSlime(World worldIn) {
+    public Quazar(World worldIn) {
         super(worldIn);
         this.setAttackModifier(1);
         this.setHealthModifier(26);
@@ -138,7 +128,7 @@ public class KingSlime extends EntityBetterSlime implements ISpecialSlime {
     }
 
     // Needed for the creeper state
-    private static final DataParameter<Integer> STATE = EntityDataManager.<Integer>createKey(KingSlime.class, DataSerializers.VARINT);
+    private static final DataParameter<Integer> STATE = EntityDataManager.<Integer>createKey(Quazar.class, DataSerializers.VARINT);
 
     public int getCreeperState() {
         return ((Integer) this.dataManager.get(STATE)).intValue();
@@ -412,9 +402,9 @@ public class KingSlime extends EntityBetterSlime implements ISpecialSlime {
                 double d1 = this.posZ + (double)f3;
                 // Red slime particles
                 world.spawnParticle(EnumParticleTypes.ITEM_CRACK, d0, this.getEntityBoundingBox().minY, d1, 0.0D, 0.0D, 0.0D, Item.getIdFromItem(Item.getByNameOrId("betterslimes:red_slime")));
-//                if (j % 2 == 0) {
+                if (j % 2 == 0) {
                     world.spawnParticle(EnumParticleTypes.LAVA, d0, this.getEntityBoundingBox().minY, d1, 0.0D, 0.0D, 0.0D);
-//                }
+                }
             }
         }
 
@@ -506,7 +496,7 @@ public class KingSlime extends EntityBetterSlime implements ISpecialSlime {
     // Disable fall damage so the boss doesn't kill itself when it leaps
     @SubscribeEvent
     public void LivingFallEvent(LivingFallEvent event) {
-        if (event.getEntity() instanceof KingSlime) {
+        if (event.getEntity() instanceof Quazar) {
             event.setDistance(0.0F);
             event.setCanceled(true);
         }

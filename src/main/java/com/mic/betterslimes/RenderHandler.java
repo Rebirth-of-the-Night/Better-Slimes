@@ -1,16 +1,12 @@
 package com.mic.betterslimes;
 
-import com.mic.betterslimes.entity.EntityBetterSlime;
 import com.mic.betterslimes.entity.RenderSlime;
 import com.mic.betterslimes.entity.slimes.*;
 
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderManager;
-import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.client.registry.IRenderFactory;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class RenderHandler {
 	
@@ -79,9 +75,9 @@ public class RenderHandler {
 				}
 			});
 			
-			RenderingRegistry.registerEntityRenderingHandler(KingSlime.class, new IRenderFactory<KingSlime>() {
+			RenderingRegistry.registerEntityRenderingHandler(Quazar.class, new IRenderFactory<Quazar>() {
 				@Override
-				public Render<? super KingSlime> createRenderFor(RenderManager manager) {
+				public Render<? super Quazar> createRenderFor(RenderManager manager) {
 					return new RenderSlime(modID, "king_slime", manager);
 				}
 			});

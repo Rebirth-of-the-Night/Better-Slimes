@@ -1,42 +1,22 @@
 package MICDeps.util.handlers;
 
-import java.util.List;
-import java.util.Random;
-
 import com.mic.betterslimes.entity.EntityBetterSlime;
 import com.mic.betterslimes.entity.ISpecialSlime;
 import com.mic.betterslimes.entity.slimes.*;
-import com.mic.betterslimes.items.ModItems;
 
 import MICDeps.ModBase;
 import MICDeps.items.ItemBuilder;
-import net.minecraft.block.Block;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.IEntityLivingData;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Biomes;
-import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
-import net.minecraft.server.MinecraftServer;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.text.TextComponentString;
-import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.biome.Biome;
-import net.minecraft.world.storage.loot.LootTableList;
 import net.minecraftforge.client.event.ModelRegistryEvent;
-import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.common.BiomeDictionary;
-import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerLoggedInEvent;
-import net.minecraftforge.fml.common.gameevent.TickEvent;
-import net.minecraftforge.fml.common.gameevent.TickEvent.PlayerTickEvent;
-import net.minecraftforge.fml.common.gameevent.TickEvent.WorldTickEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -88,12 +68,12 @@ public class RegistryHandler {
 
 						int chance = rand.nextInt(101);
 						if (chance <= ConfigHandler.kingChance) {
-							System.out.println("Spawning King Slime...");
-							KingSlime king = new KingSlime(p.getEntityWorld());
-							king.setLocationAndAngles(p.posX - 150 + rand.nextInt(300), p.posY + 5,
+							System.out.println("Spawning Quazar...");
+							Quazar quazar = new Quazar(p.getEntityWorld());
+							quazar.setLocationAndAngles(p.posX - 150 + rand.nextInt(300), p.posY + 5,
 									p.posZ - 150 + rand.nextInt(300), p.rotationYaw, p.rotationPitch);
 
-							p.getEntityWorld().spawnEntity(king);
+							p.getEntityWorld().spawnEntity(quazar);
 						}
 					}
 				}
@@ -106,9 +86,9 @@ public class RegistryHandler {
 	@SubscribeEvent
 	public void onEntityJoinWorld(EntityJoinWorldEvent event) {
 
-		if (event.getEntity() instanceof KingSlime) {
-			KingSlime k = (KingSlime) event.getEntity();
-			System.out.println("King Slime spawned");
+		if (event.getEntity() instanceof Quazar) {
+			Quazar k = (Quazar) event.getEntity();
+			System.out.println("Quazar spawned");
 
 			/*
 			List<EntityPlayer> players = k.world.playerEntities;
@@ -116,7 +96,7 @@ public class RegistryHandler {
 			for (EntityPlayer p : players) {
 				if (!k.world.isRemote)
 					p.sendMessage(new TextComponentString(
-							TextFormatting.GREEN + "The King Slime has been summoned near a random player."));
+							TextFormatting.GREEN + "Quazar has been summoned near a random player."));
 				p.playSound(SoundEvents.AMBIENT_CAVE, 2.5F, 1.0F);
 			}
 			*/
