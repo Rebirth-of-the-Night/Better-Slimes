@@ -8,20 +8,28 @@ This version is modified with changes fit for Rebirth of the Night.
 
 Changes from the original project:
 
-- Remove sound and message when King Slime is spawned
+- Renamed King Slime to Quazar.
 
-- King Slime no longer spawns around the player.
+- Quazar has new textures and particles.
 
-- Fixed the way entities are registered
+- Remove sound and message when Quazar is spawned.
+
+- Quazar no longer spawns around the player.
+
+- Quazar now has an attack attribute
+
+- Quazar is no longer affected by cobwebs or liquids.
+
+- Quazar is resistant to fire.
+
+- Slimes no longer transform into different ones when spawning in certain specific biomes.
+
+- Fixed the way entities are registered.
 
 - Added Slime Boss leap attack.
 
-- The entity which KingSlime splits to on death is now configurable. Also now toggleable.
-
-- King Slime now has an attack attribute
+- The entity which Quazar splits to on death is now configurable. Also now toggleable.
 
 - Setting a slime to 0 spawn rate in the config now actually disables it
 
 - BetterSlimes now have a config variable that multiplies their dealt damage
- 
-
