@@ -1,0 +1,17 @@
+{
+  "entity.quazar.ambient": {
+    "category": "entity",
+    "subtitle": "entity.quazar.ambient",
+    "sounds": [{"name": "betterslimes:entity/quazar/ambient", "stream": true}]
+  },
+  "entity.quazar.hurt": {
+    "category": "entity",
+    "subtitle": "entity.quazar.hurt",
+    "sounds": [{"name": "betterslimes:entity/quazar/hurt", "stream": true}]
+  },
+  "entity.quazar.death": {
+    "category": "entity",
+    "subtitle": "entity.quazar.death",
+    "sounds": [{"name": "betterslimes:entity/quazar/death", "stream": true}]
+  }
+}

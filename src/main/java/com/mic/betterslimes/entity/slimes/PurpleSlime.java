@@ -57,12 +57,8 @@ public class PurpleSlime extends EntityBetterSlime implements ISpecialSlime {
         {
             if (this.world.getDifficulty() != EnumDifficulty.PEACEFUL)
             {
-            	
             		return true;
-            	
-
             }
-
             return false;
         }
     }

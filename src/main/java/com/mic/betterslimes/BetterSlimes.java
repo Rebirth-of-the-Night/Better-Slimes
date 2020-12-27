@@ -57,6 +57,7 @@ public class BetterSlimes extends ModBase {
 	@Override
 	@EventHandler
 	public void init(FMLInitializationEvent event) {
+		// Init sounds
 		RegistryHandler.initRegistries();
 		items.oreDict();
 		super.init(event);

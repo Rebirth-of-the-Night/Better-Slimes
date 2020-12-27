@@ -29,9 +29,7 @@ public class RegistryHandler {
 	}
 
 	public static void preInitRegistries(FMLPreInitializationEvent event) {
-
 		ConfigHandler.registerConfig(event);
-
 	}
 
 	public static void serverRegistries(FMLServerStartingEvent event) {
@@ -146,5 +144,4 @@ public class RegistryHandler {
 	private boolean checkSlime(Entity e) {
 		return (!(e instanceof ISpecialSlime));
 	}
-
 }
