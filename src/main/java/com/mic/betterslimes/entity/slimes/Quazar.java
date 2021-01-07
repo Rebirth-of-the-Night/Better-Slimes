@@ -516,6 +516,7 @@ public class Quazar extends EntityBetterSlime implements ISpecialSlime {
 //        return SoundsHandler.ENTITY_QUAZAR_DEATH;
 //    }
 //
+    // Idle sound
 //    @Override
 //    protected SoundEvent getSquishSound()
 //    {
