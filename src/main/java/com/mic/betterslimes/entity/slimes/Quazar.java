@@ -3,6 +3,7 @@ package com.mic.betterslimes.entity.slimes;
 import javax.annotation.Nullable;
 
 import MICDeps.Reference;
+import MICDeps.util.handlers.SoundsHandler;
 import com.mic.betterslimes.BetterSlimes;
 import com.mic.betterslimes.entity.EntityBetterSlime;
 import com.mic.betterslimes.entity.ISpecialSlime;
@@ -21,6 +22,7 @@ import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.BossInfo;
@@ -501,4 +503,22 @@ public class Quazar extends EntityBetterSlime implements ISpecialSlime {
             event.setCanceled(true);
         }
     }
+
+//    @Override
+//    protected SoundEvent getHurtSound(DamageSource damageSourceIn)
+//    {
+//        return SoundsHandler.ENTITY_QUAZAR_HURT;
+//    }
+
+//    @Override
+//    protected SoundEvent getDeathSound()
+//    {
+//        return SoundsHandler.ENTITY_QUAZAR_DEATH;
+//    }
+//
+//    @Override
+//    protected SoundEvent getSquishSound()
+//    {
+//        return this.isSmallSlime() ? SoundEvents.ENTITY_SMALL_SLIME_SQUISH : SoundEvents.ENTITY_SLIME_SQUISH;
+//    }
 }

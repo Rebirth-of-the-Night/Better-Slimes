@@ -2,6 +2,7 @@ package com.mic.betterslimes;
 
 import MICDeps.Reference;
 import MICDeps.util.handlers.RegistryHandler;
+import MICDeps.util.handlers.SoundsHandler;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.storage.loot.LootTableList;
@@ -27,7 +28,7 @@ import MICDeps.util.handlers.ConfigHandler;
 
 @Mod(modid = Reference.MODID, name = Reference.MODNAME, version = Reference.VERSION)
 public class BetterSlimes extends ModBase {
-	public static ResourceLocation blueSlimeLT = LootTableList.register(new ResourceLocation("betterslimes","blue_slime"));
+	public static ResourceLocation blueSlimeLT = LootTableList.register(new ResourceLocation(Reference.MODID,"blue_slime"));
 	public static ResourceLocation redSlimeLT = LootTableList.register(new ResourceLocation("betterslimes","red_slime"));
 	public static ResourceLocation blackSlimeLT = LootTableList.register(new ResourceLocation("betterslimes","black_slime"));
 	public static ResourceLocation yellowSlimeLT = LootTableList.register(new ResourceLocation("betterslimes","yellow_slime"));
@@ -58,7 +59,8 @@ public class BetterSlimes extends ModBase {
 	@EventHandler
 	public void init(FMLInitializationEvent event) {
 		// Init sounds
-		RegistryHandler.initRegistries();
+		SoundsHandler.registerSounds();
+//		RegistryHandler.initRegistries();
 		items.oreDict();
 		super.init(event);
 	}
