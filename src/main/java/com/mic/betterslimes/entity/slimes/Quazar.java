@@ -126,7 +126,7 @@ public class Quazar extends EntityBetterSlime implements ISpecialSlime {
 
         // Needed for event handling
         MinecraftForge.EVENT_BUS.register(this);
-        SplitSlime = EntityList.getClassFromName(splitSlimeString);
+        SplitSlime = EntityList.getClass(new ResourceLocation(splitSlimeString));
     }
 
     // Needed for the creeper state
