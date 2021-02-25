@@ -1,11 +1,7 @@
 package MICDeps.items;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
-
-import com.mic.betterslimes.RenderHandler;
 
 import MICDeps.ModBase;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;

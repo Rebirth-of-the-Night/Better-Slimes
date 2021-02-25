@@ -14,7 +14,6 @@ public class ModItems {
 	Item black_slime;
 	
 	public ModItems(ItemBuilder i) {
-		Item null_item = new ItemBase(i, "null_item", null);
 		red_slime = new ItemBase(i, "red_slime");
 		purple_slime = new ItemBase(i, "purple_slime");
 		yellow_slime = new ItemBase(i, "yellow_slime");

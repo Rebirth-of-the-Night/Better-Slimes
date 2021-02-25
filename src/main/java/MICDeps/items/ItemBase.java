@@ -1,10 +1,8 @@
 package MICDeps.items;
 
 import MICDeps.util.ModTab;
-import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
-import net.minecraftforge.client.model.ModelLoader;
 
 public class ItemBase extends Item{
 	

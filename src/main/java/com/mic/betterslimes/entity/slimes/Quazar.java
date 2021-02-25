@@ -3,7 +3,6 @@ package com.mic.betterslimes.entity.slimes;
 import javax.annotation.Nullable;
 
 import MICDeps.Reference;
-import MICDeps.util.handlers.SoundsHandler;
 import com.mic.betterslimes.BetterSlimes;
 import com.mic.betterslimes.entity.EntityBetterSlime;
 import com.mic.betterslimes.entity.ISpecialSlime;
@@ -22,7 +21,6 @@ import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.BossInfo;
@@ -327,7 +325,7 @@ public class Quazar extends EntityBetterSlime implements ISpecialSlime {
                     entity.setPositionAndUpdate(entity.posX, entity.posY + 1.5, entity.posZ);
                     entity.addVelocity((0.8 / (entity.posX - this.posX)) * leapVelocityMultiplierXZ, MathHelper.clamp(32 / (dist) * leapVelocityMultiplierY, 1, 16), 0.8 / (entity.posZ - this.posZ) * leapVelocityMultiplierXZ);
                     entity.velocityChanged = true;
-                    entity.attackEntityFrom(DamageSource.GENERIC, (float) ((this.explodeDamage / (dist + 1))));
+                    entity.attackEntityFrom(DamageSource.GENERIC, (float) ((explodeDamage / (dist + 1))));
                     entity.setLastAttackedEntity(this);
                     entity.setRevengeTarget(this);
                 }

@@ -1,30 +1,19 @@
 package com.mic.betterslimes;
 
 import MICDeps.Reference;
-import MICDeps.util.handlers.RegistryHandler;
 import MICDeps.util.handlers.SoundsHandler;
-import net.minecraft.init.Blocks;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.storage.loot.LootTableList;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-import net.minecraftforge.oredict.OreDictionary;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import org.apache.logging.log4j.Logger;
 
 import com.mic.betterslimes.entity.EntityInit;
 import com.mic.betterslimes.items.ModItems;
 
 import MICDeps.ModBase;
 import MICDeps.items.ItemBuilder;
-import MICDeps.util.handlers.ConfigHandler;
 
 @Mod(modid = Reference.MODID, name = Reference.MODNAME, version = Reference.VERSION)
 public class BetterSlimes extends ModBase {
@@ -46,7 +35,6 @@ public class BetterSlimes extends ModBase {
 	@Override
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event) { 
-		ConfigHandler cfh = new ConfigHandler(this, Reference.MODID);
 		itemBuilder = new ItemBuilder(Reference.MODID);
 		items = new ModItems(itemBuilder);
 		proxy.registerRenders();
@@ -60,7 +48,6 @@ public class BetterSlimes extends ModBase {
 	public void init(FMLInitializationEvent event) {
 		// Init sounds
 		SoundsHandler.registerSounds();
-//		RegistryHandler.initRegistries();
 		items.oreDict();
 		super.init(event);
 	}

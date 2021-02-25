@@ -2,19 +2,14 @@ package MICDeps.util.handlers;
 
 import java.io.File;
 
-import MICDeps.ModBase;
 import com.mic.betterslimes.entity.slimes.Quazar;
 import net.minecraftforge.common.config.Configuration;
-import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
 import static com.mic.betterslimes.entity.EntityBetterSlime.damageMultiplier;
 
 public class ConfigHandler {
 	public static Configuration config;
 	public static boolean startupMessage = true;
-	private static ModBase mod;
-	private static String modID;
-	
 	
 	public static int blueSlime = 14;
 	public static int redSlime = 7;
@@ -32,12 +27,6 @@ public class ConfigHandler {
 	public static int splitChance = 50;
 
 	public static final int MAX = Short.MAX_VALUE;
-
-
-	public ConfigHandler(ModBase mod, String modID) {
-		this.mod = mod;
-		this.modID = modID;
-	}
 
 	public static void init(File file) {
 
@@ -73,11 +62,4 @@ public class ConfigHandler {
 		config.save();
 
 	}
-
-	public static void registerConfig(FMLPreInitializationEvent event) {
-		mod.config = new File(event.getModConfigurationDirectory() + "/" + modID);
-		mod.config.mkdirs();
-		init(new File(mod.config.getPath(), modID + ".cfg"));
-	}
-
 }
