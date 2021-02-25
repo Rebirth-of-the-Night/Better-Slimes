@@ -18,9 +18,6 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
 public class ModBase {
 
-	public static final String CLIENT_PROXY_CLASS = "MICDeps.proxy.ClientProxy";
-	public static final String COMMON_PROXY_CLASS = "MICDeps.proxy.CommonProxy";
-
 	public static ItemBuilder itemBuilder;
 	public static ModItems items;
 
@@ -30,7 +27,7 @@ public class ModBase {
 	@Mod.Instance()
 	public static ModBase instance;
 
-	@SidedProxy(clientSide = CLIENT_PROXY_CLASS, serverSide = COMMON_PROXY_CLASS)
+	@SidedProxy(clientSide = Reference.CLIENT, serverSide = Reference.SERVER)
 	public static IProxy proxy;
 
 	@EventHandler
