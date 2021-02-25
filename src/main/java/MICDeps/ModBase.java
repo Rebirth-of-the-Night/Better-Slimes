@@ -5,7 +5,7 @@ import java.io.File;
 import com.mic.betterslimes.items.ModItems;
 
 import MICDeps.items.ItemBuilder;
-import MICDeps.proxy.CommonProxy;
+import MICDeps.proxy.IProxy;
 import MICDeps.util.handlers.ConfigHandler;
 import MICDeps.util.handlers.RegistryHandler;
 import MICDeps.util.handlers.SoundsHandler;
@@ -31,7 +31,7 @@ public class ModBase {
 	public static ModBase instance;
 
 	@SidedProxy(clientSide = CLIENT_PROXY_CLASS, serverSide = COMMON_PROXY_CLASS)
-	public static CommonProxy proxy;
+	public static IProxy proxy;
 
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
