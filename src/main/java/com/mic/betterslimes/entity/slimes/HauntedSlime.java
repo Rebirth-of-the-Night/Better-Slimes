@@ -9,18 +9,11 @@ import com.mic.betterslimes.entity.EntityBetterSlime;
 import com.mic.betterslimes.entity.ISpecialSlime;
 
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.EntityCreature;
-import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.MoverType;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.ai.EntityAIFindEntityNearestPlayer;
-import net.minecraft.entity.ai.EntityAIHurtByTarget;
-import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
-import net.minecraft.entity.ai.EntityAISwimming;
-import net.minecraft.entity.ai.EntityAITarget;
-import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.ai.EntityMoveHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityLargeFireball;
@@ -273,7 +266,7 @@ public class HauntedSlime extends EntityBetterSlime implements ISpecialSlime{
             EntityLivingBase entitylivingbase = this.parentEntity.getAttackTarget();
             double d0 = 64.0D;
 
-            if (entitylivingbase.getDistanceSq(this.parentEntity) < 4096.0D && this.parentEntity.canEntityBeSeen(entitylivingbase))
+            if (entitylivingbase.getDistanceSq(this.parentEntity) < (d0 * d0) && this.parentEntity.canEntityBeSeen(entitylivingbase))
             {
                 World world = this.parentEntity.world;
                 ++this.attackTimer;
@@ -284,13 +277,13 @@ public class HauntedSlime extends EntityBetterSlime implements ISpecialSlime{
                 {
                     double d1 = 4.0D;
                     Vec3d vec3d = this.parentEntity.getLook(1.0F);
-                    double d2 = entitylivingbase.posX - (this.parentEntity.posX + vec3d.x * 4.0D);
+                    double d2 = entitylivingbase.posX - (this.parentEntity.posX + vec3d.x * d1);
                     double d3 = entitylivingbase.getEntityBoundingBox().minY + (double)(entitylivingbase.height / 2.0F) - (0.5D + this.parentEntity.posY + (double)(this.parentEntity.height / 2.0F));
-                    double d4 = entitylivingbase.posZ - (this.parentEntity.posZ + vec3d.z * 4.0D);
+                    double d4 = entitylivingbase.posZ - (this.parentEntity.posZ + vec3d.z * d1);
                     EntityWitherSkull ws = new EntityWitherSkull(world, this.parentEntity, d2, d3, d4);
-                    ws.posX = this.parentEntity.posX + vec3d.x * 4.0D;
+                    ws.posX = this.parentEntity.posX + vec3d.x * d1;
                     ws.posY = this.parentEntity.posY + (double)(this.parentEntity.height / 2.0F) + 0.5D;
-                    ws.posZ = this.parentEntity.posZ + vec3d.z * 4.0D;
+                    ws.posZ = this.parentEntity.posZ + vec3d.z * d1;
                     world.spawnEntity(ws);
                     this.attackTimer = -40;
                 }
@@ -337,7 +330,7 @@ static class AILookAround extends EntityAIBase
                 EntityLivingBase entitylivingbase = this.parentEntity.getAttackTarget();
                 double d0 = 64.0D;
 
-                if (entitylivingbase.getDistanceSq(this.parentEntity) < 4096.0D)
+                if (entitylivingbase.getDistanceSq(this.parentEntity) < (d0 * d0))
                 {
                     double d1 = entitylivingbase.posX - this.parentEntity.posX;
                     double d2 = entitylivingbase.posZ - this.parentEntity.posZ;
