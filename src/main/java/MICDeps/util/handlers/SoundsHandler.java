@@ -1,6 +1,6 @@
 package MICDeps.util.handlers;
 
-import MICDeps.Reference;
+import com.mic.betterslimes.util.Reference;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 

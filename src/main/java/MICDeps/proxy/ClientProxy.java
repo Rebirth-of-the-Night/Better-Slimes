@@ -2,7 +2,7 @@ package MICDeps.proxy;
 
 import com.mic.betterslimes.RenderHandler;
 
-import MICDeps.Reference;
+import com.mic.betterslimes.util.Reference;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.item.Item;

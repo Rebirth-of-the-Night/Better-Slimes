@@ -1,6 +1,6 @@
 package com.mic.betterslimes.entity;
 
-import MICDeps.Reference;
+import com.mic.betterslimes.util.Reference;
 import com.mic.betterslimes.BetterSlimes;
 import com.mic.betterslimes.entity.slimes.*;
 

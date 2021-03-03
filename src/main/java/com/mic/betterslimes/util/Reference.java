@@ -1,4 +1,4 @@
-package MICDeps;
+package com.mic.betterslimes.util;
 
 public class Reference
 {

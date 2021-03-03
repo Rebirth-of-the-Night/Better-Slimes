@@ -2,8 +2,8 @@ package com.mic.betterslimes.entity.slimes;
 
 import javax.annotation.Nullable;
 
-import MICDeps.Reference;
-import com.mic.betterslimes.BetterSlimes;
+import com.mic.betterslimes.util.LootTables;
+import com.mic.betterslimes.util.Reference;
 import com.mic.betterslimes.entity.EntityBetterSlime;
 import com.mic.betterslimes.entity.ISpecialSlime;
 
@@ -284,7 +284,7 @@ public class Quazar extends EntityBetterSlime implements ISpecialSlime {
 
     @Nullable
     protected ResourceLocation getLootTable() {
-        return BetterSlimes.quazarLT;
+        return LootTables.quazarLT;
     }
 
     protected void leap(EntityLivingBase leapTarget) {

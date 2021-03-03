@@ -4,9 +4,9 @@ import java.util.Random;
 
 import javax.annotation.Nullable;
 
-import com.mic.betterslimes.BetterSlimes;
 import com.mic.betterslimes.entity.EntityBetterSlime;
 import com.mic.betterslimes.entity.ISpecialSlime;
+import com.mic.betterslimes.util.LootTables;
 
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
@@ -221,7 +221,7 @@ public class HauntedSlime extends EntityBetterSlime implements ISpecialSlime{
 
 	@Nullable
 	protected ResourceLocation getLootTable() {
-		return this.getSlimeSize() == 1 ? BetterSlimes.redSlimeLT : LootTableList.EMPTY;
+		return this.getSlimeSize() == 1 ? LootTables.hauntedSlimeLT : LootTableList.EMPTY;
 	}
 	
 	static class AIFireballAttack extends EntityAIBase

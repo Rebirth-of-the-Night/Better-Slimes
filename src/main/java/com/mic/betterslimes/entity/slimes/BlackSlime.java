@@ -2,9 +2,9 @@ package com.mic.betterslimes.entity.slimes;
 
 import javax.annotation.Nullable;
 
-import com.mic.betterslimes.BetterSlimes;
 import com.mic.betterslimes.entity.EntityBetterSlime;
 import com.mic.betterslimes.entity.ISpecialSlime;
+import com.mic.betterslimes.util.LootTables;
 
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.util.ResourceLocation;
@@ -57,6 +57,6 @@ public class BlackSlime extends EntityBetterSlime implements ISpecialSlime{
 	@Nullable
     protected ResourceLocation getLootTable()
     {
-        return this.getSlimeSize() == 1 ? BetterSlimes.blackSlimeLT : LootTableList.EMPTY;
+        return this.getSlimeSize() == 1 ? LootTables.blackSlimeLT : LootTableList.EMPTY;
     }
 }

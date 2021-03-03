@@ -2,10 +2,11 @@ package com.mic.betterslimes.entity.slimes;
 
 import javax.annotation.Nullable;
 
-import com.mic.betterslimes.BetterSlimes;
 import com.mic.betterslimes.entity.EntityBetterSlime;
 
 import com.mic.betterslimes.entity.ISpecialSlime;
+import com.mic.betterslimes.util.LootTables;
+
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
@@ -41,7 +42,7 @@ public class BlueSlime extends EntityBetterSlime implements ISpecialSlime {
 
 	@Nullable
 	protected ResourceLocation getLootTable() {
-		return this.getSlimeSize() == 1 ? BetterSlimes.blueSlimeLT : LootTableList.EMPTY;
+		return this.getSlimeSize() == 1 ? LootTables.blueSlimeLT : LootTableList.EMPTY;
 	}
 
 }

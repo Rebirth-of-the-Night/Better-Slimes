@@ -2,10 +2,10 @@ package com.mic.betterslimes.entity.slimes;
 
 import javax.annotation.Nullable;
 
-import com.mic.betterslimes.BetterSlimes;
 import com.mic.betterslimes.entity.EntityBetterSlime;
-
 import com.mic.betterslimes.entity.ISpecialSlime;
+import com.mic.betterslimes.util.LootTables;
+
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.EnumDifficulty;
@@ -50,7 +50,7 @@ public class RedSlime extends EntityBetterSlime implements ISpecialSlime {
 	@Nullable
     protected ResourceLocation getLootTable()
     {
-        return this.getSlimeSize() == 1 ? BetterSlimes.redSlimeLT : LootTableList.EMPTY;
+        return this.getSlimeSize() == 1 ? LootTables.redSlimeLT : LootTableList.EMPTY;
     }
 	
 	@Override
