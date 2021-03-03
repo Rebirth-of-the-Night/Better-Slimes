@@ -38,8 +38,6 @@ import static MICDeps.util.handlers.ConfigHandler.config;
 // Renamed from King Slime to Quazar
 public class Quazar extends EntityBetterSlime implements ISpecialSlime {
 
-    public static final String MODID = Reference.MODID;
-
     private final BossInfoServer bossInfo = (BossInfoServer) (new BossInfoServer(this.getDisplayName(),
             BossInfo.Color.BLUE, BossInfo.Overlay.PROGRESS));
     private static final DataParameter<Integer> SPAWN_TIME = EntityDataManager.<Integer>createKey(Quazar.class,
@@ -99,7 +97,7 @@ public class Quazar extends EntityBetterSlime implements ISpecialSlime {
             splitChance = 0;
         }
 
-        splitSlimeString = config.getString(NAME, "slimeChildren", MODID + ":blue_slime", "The type of slime the boss will split into on death\n Must be a BetterSlimes slime");
+        splitSlimeString = config.getString(NAME, "slimeChildren", Reference.MODID + ":blue_slime", "The type of slime the boss will split into on death\n Must be a BetterSlimes slime");
 
         damageMultiplier = config.getFloat(NAME, "damageMultiplier", 1.0F, 0, MAX, "Attack damage multiplier of Quazar");
 

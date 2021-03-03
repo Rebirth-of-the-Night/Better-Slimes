@@ -1,32 +1,42 @@
 package MICDeps.util.handlers;
 
+import com.mic.betterslimes.BetterSlimes;
 import com.mic.betterslimes.entity.EntityBetterSlime;
 import com.mic.betterslimes.entity.ISpecialSlime;
 import com.mic.betterslimes.entity.slimes.*;
 
-import MICDeps.ModBase;
-import MICDeps.items.ItemBuilder;
+import com.mic.betterslimes.items.ModItems;
+
 import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.item.Item;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.common.BiomeDictionary;
+import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
+import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+@Mod.EventBusSubscriber
 public class RegistryHandler {
+
+    @SubscribeEvent
+    public static void registerItems(final RegistryEvent.Register<Item> event) {
+		System.out.println("Registering items");
+		for (Item item : ModItems.MOD_ITEMS)
+			event.getRegistry().register(item);
+	}
 
 	@SideOnly(Side.CLIENT)
 	@SubscribeEvent
 	public static void onModelRegister(ModelRegistryEvent event) {
-		for (Item item : ItemBuilder.getItemList()) {
-			ModBase.proxy.registerItemRenderer(item, 0, "inventory");
-		}
+		for (Item item : ModItems.MOD_ITEMS)
+			BetterSlimes.proxy.registerItemRenderer(item, 0, "inventory");
 	}
 
 	@SubscribeEvent
-	public void onEntityJoinWorld(EntityJoinWorldEvent event) {
+	public static void onEntityJoinWorld(EntityJoinWorldEvent event) {
 
 		if (event.getEntity() instanceof Quazar) {
 			Quazar k = (Quazar) event.getEntity();

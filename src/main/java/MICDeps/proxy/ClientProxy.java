@@ -2,6 +2,7 @@ package MICDeps.proxy;
 
 import com.mic.betterslimes.RenderHandler;
 
+import MICDeps.Reference;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.item.Item;
@@ -15,17 +16,13 @@ public class ClientProxy implements IProxy {
 
 	@Override
 	public void registerItemRenderer(Item item, int meta, String id) {
-
 		ModelLoader.setCustomModelResourceLocation(item, 0,
-				new ModelResourceLocation(
-						"betterslimes" + ":" + item.getRegistryName().toString().replace("betterslimes" + ":", ""),
-						"inventory"));
+				new ModelResourceLocation(item.getRegistryName().toString(), "inventory"));
 	}
 	
 	@Override
 	public void spawnParticle(World worldIn, EnumParticleTypes types, double posX, double posY, double posZ, double d1, double d2, double d3) {
 		worldIn.spawnParticle(types, posX, posY, posZ, 0, 0, 0);
-
 	}
 
 	@Override
@@ -35,8 +32,7 @@ public class ClientProxy implements IProxy {
 
 	@Override
 	public void registerRenders() {
-		RenderHandler.registerEntityRenders("betterslimes");
-
+		RenderHandler.registerEntityRenders(Reference.MODID);
 	}
 
 	@Override
@@ -44,6 +40,5 @@ public class ClientProxy implements IProxy {
 		MinecraftForge.EVENT_BUS.register(this);
 		System.out.println("PreInit Success");
 		// ModItems.registerModels();
-
 	}
 }
