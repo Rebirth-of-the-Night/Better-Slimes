@@ -1,9 +1,12 @@
 package com.mic.betterslimes;
 
+import com.mic.betterslimes.entity.EntityInit;
+import com.mic.betterslimes.handlers.ConfigHandler;
+import com.mic.betterslimes.handlers.RegistryHandler;
+import com.mic.betterslimes.items.ModItems;
+import com.mic.betterslimes.proxy.IProxy;
 import com.mic.betterslimes.util.Reference;
-import MICDeps.util.handlers.ConfigHandler;
-import MICDeps.util.handlers.RegistryHandler;
-import MICDeps.util.handlers.SoundsHandler;
+
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
@@ -12,11 +15,6 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
 import java.io.File;
-
-import com.mic.betterslimes.entity.EntityInit;
-import com.mic.betterslimes.items.ModItems;
-
-import MICDeps.proxy.IProxy;
 
 @Mod(modid = Reference.MODID, name = Reference.MODNAME, version = Reference.VERSION)
 public class BetterSlimes {
@@ -43,13 +41,12 @@ public class BetterSlimes {
         ConfigHandler.init(config);
         proxy.preInit(event);
         
-		EntityInit.registerEntity();
+		EntityInit.registerEntities();
 	}
 
 	@EventHandler
 	public void init(FMLInitializationEvent event) {
 		// Init sounds
-		SoundsHandler.registerSounds();
         ModItems.registerOreDict();
 		proxy.init(event);
     }

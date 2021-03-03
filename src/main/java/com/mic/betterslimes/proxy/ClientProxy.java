@@ -1,4 +1,4 @@
-package MICDeps.proxy;
+package com.mic.betterslimes.proxy;
 
 import com.mic.betterslimes.RenderHandler;
 

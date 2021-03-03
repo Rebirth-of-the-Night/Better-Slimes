@@ -1,6 +1,7 @@
 package com.mic.betterslimes.entity;
 
-import MICDeps.util.handlers.ConfigHandler;
+import com.mic.betterslimes.handlers.ConfigHandler;
+
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.monster.EntitySlime;

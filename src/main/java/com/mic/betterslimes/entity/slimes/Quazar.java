@@ -33,7 +33,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 
 import java.util.List;
-import static MICDeps.util.handlers.ConfigHandler.config;
+import static com.mic.betterslimes.handlers.ConfigHandler.config;
 
 // Renamed from King Slime to Quazar
 public class Quazar extends EntityBetterSlime implements ISpecialSlime {

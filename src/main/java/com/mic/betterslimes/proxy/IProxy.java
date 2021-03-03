@@ -1,4 +1,4 @@
-package MICDeps.proxy;
+package com.mic.betterslimes.proxy;
 
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraft.item.Item;

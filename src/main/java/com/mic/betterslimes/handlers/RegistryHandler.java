@@ -1,4 +1,4 @@
-package MICDeps.util.handlers;
+package com.mic.betterslimes.handlers;
 
 import com.mic.betterslimes.BetterSlimes;
 import com.mic.betterslimes.entity.EntityBetterSlime;
@@ -6,9 +6,11 @@ import com.mic.betterslimes.entity.ISpecialSlime;
 import com.mic.betterslimes.entity.slimes.*;
 
 import com.mic.betterslimes.items.ModItems;
+import com.mic.betterslimes.sounds.ModSounds;
 
 import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.item.Item;
+import net.minecraft.util.SoundEvent;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.event.RegistryEvent;
@@ -27,6 +29,13 @@ public class RegistryHandler {
 		for (Item item : ModItems.MOD_ITEMS)
 			event.getRegistry().register(item);
 	}
+
+    @SubscribeEvent
+    public static void registerSounds(final RegistryEvent.Register<SoundEvent> event) {
+        System.out.println("Registering sounds");
+        for (SoundEvent s : ModSounds.MOD_SOUNDS)
+            event.getRegistry().register(s);
+    }
 
 	@SideOnly(Side.CLIENT)
 	@SubscribeEvent

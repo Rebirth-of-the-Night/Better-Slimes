@@ -1,4 +1,4 @@
-package MICDeps.proxy;
+package com.mic.betterslimes.proxy;
 
 import net.minecraft.util.text.translation.I18n;
 

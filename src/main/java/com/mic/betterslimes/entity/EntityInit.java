@@ -3,8 +3,8 @@ package com.mic.betterslimes.entity;
 import com.mic.betterslimes.util.Reference;
 import com.mic.betterslimes.BetterSlimes;
 import com.mic.betterslimes.entity.slimes.*;
+import com.mic.betterslimes.handlers.ConfigHandler;
 
-import MICDeps.util.handlers.ConfigHandler;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.init.Biomes;
@@ -23,7 +23,7 @@ public class EntityInit {
                 entity, name, ID, BetterSlimes.instance, range, 1, true, colorOne, colorTwo);
     }
 
-    public static void registerEntity() {
+    public static void registerEntities() {
         int view = 60;
 
         registerEntity("blue_slime", BlueSlime.class, 111, view, 0x1219CF, 0x0000FF);
