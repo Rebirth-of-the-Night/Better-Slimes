@@ -1,6 +1,6 @@
 package com.mic.betterslimes;
 
-import com.mic.betterslimes.entity.EntityInit;
+import com.mic.betterslimes.entity.ModEntities;
 import com.mic.betterslimes.handlers.ConfigHandler;
 import com.mic.betterslimes.handlers.RegistryHandler;
 import com.mic.betterslimes.items.ModItems;
@@ -41,7 +41,7 @@ public class BetterSlimes {
         ConfigHandler.init(config);
         proxy.preInit(event);
         
-		EntityInit.registerEntities();
+		ModEntities.registerEntities();
 	}
 
 	@EventHandler

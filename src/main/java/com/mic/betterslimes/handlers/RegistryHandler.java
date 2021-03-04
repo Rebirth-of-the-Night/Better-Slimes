@@ -2,6 +2,7 @@ package com.mic.betterslimes.handlers;
 
 import com.mic.betterslimes.BetterSlimes;
 import com.mic.betterslimes.entity.EntityBetterSlime;
+import com.mic.betterslimes.entity.ModEntities;
 import com.mic.betterslimes.entity.ISpecialSlime;
 import com.mic.betterslimes.entity.slimes.*;
 
@@ -17,6 +18,7 @@ import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.registry.EntityEntry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -35,6 +37,13 @@ public class RegistryHandler {
         System.out.println("Registering sounds");
         for (SoundEvent s : ModSounds.MOD_SOUNDS)
             event.getRegistry().register(s);
+    }
+
+    @SubscribeEvent
+    public static void registerEntities(final RegistryEvent.Register<EntityEntry> event) {
+        System.out.println("Registering entities");
+        for (EntityEntry e : ModEntities.MOD_ENTITIES)
+            event.getRegistry().register(e);
     }
 
 	@SideOnly(Side.CLIENT)
