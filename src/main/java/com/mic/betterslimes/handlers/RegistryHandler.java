@@ -79,6 +79,7 @@ public class RegistryHandler {
                     .contains(event.getWorld().getBiome(event.getEntity().getPosition()))) 
                         s = new SandSlime(event.getWorld());
                 
+                // Replace the spawned entity with the instantiated version
 				if (!s.equals(event.getEntity())) {
 					s.setLocationAndAngles(event.getEntity().posX, event.getEntity().posY, event.getEntity().posZ,
 							event.getEntity().rotationYaw, event.getEntity().rotationPitch);

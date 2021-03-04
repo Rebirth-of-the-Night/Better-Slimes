@@ -27,13 +27,10 @@ import net.minecraft.world.BossInfo;
 import net.minecraft.world.BossInfoServer;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.entity.living.LivingFallEvent;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 
 import java.util.List;
-import static com.mic.betterslimes.handlers.ConfigHandler.config;
 
 // Renamed from King Slime to Quazar
 public class Quazar extends EntityBetterSlime implements ISpecialSlime {
@@ -78,7 +75,7 @@ public class Quazar extends EntityBetterSlime implements ISpecialSlime {
     protected Class<? extends Entity> SplitSlime;
     private boolean wasOnGround = false;
 
-    public static void initConfig() {
+    public static void initConfig(Configuration config) {
         config.addCustomCategoryComment(NAME, "Configuration options for the Quazar boss");
         leapCooldown = config.getInt(NAME, "leapCooldown", 160, 0, MAX, "Cooldown between leap attacks in ticks");
         leapWarning = config.getInt(NAME, "leapWarning", 40, 0, MAX, "Length of the animation the boss does before leap attacks in ticks. \nMust be longer than leapCooldown");
@@ -120,8 +117,6 @@ public class Quazar extends EntityBetterSlime implements ISpecialSlime {
         this.movementSpeedAttribute = 0.1 * movementSpeedMultiplier;
         this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(this.movementSpeedAttribute);
 
-        // Needed for event handling
-        MinecraftForge.EVENT_BUS.register(this);
         SplitSlime = EntityList.getClass(new ResourceLocation(splitSlimeString));
     }
 
@@ -492,12 +487,10 @@ public class Quazar extends EntityBetterSlime implements ISpecialSlime {
 
 
     // Disable fall damage so the boss doesn't kill itself when it leaps
-    @SubscribeEvent
-    public void LivingFallEvent(LivingFallEvent event) {
-        if (event.getEntity() instanceof Quazar) {
-            event.setDistance(0.0F);
-            event.setCanceled(true);
-        }
+    @Override
+    public boolean isEntityInvulnerable(DamageSource source) {
+        if (source == DamageSource.FALL) return true;
+        return super.isEntityInvulnerable(source);
     }
 
 //    @Override

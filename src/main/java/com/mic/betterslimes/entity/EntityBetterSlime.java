@@ -1,6 +1,6 @@
 package com.mic.betterslimes.entity;
 
-import com.mic.betterslimes.handlers.ConfigHandler;
+import com.mic.betterslimes.util.ModConfig;
 
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -12,7 +12,7 @@ import net.minecraft.world.World;
 public class EntityBetterSlime extends EntitySlime {
 
 	public static float damageMultiplier = 1;
-	public static int splitChance = ConfigHandler.splitChance;
+	public static int splitChance = ModConfig.splitChance;
 
 	public double attackMod = 1;
 	public double healthMod = 1;

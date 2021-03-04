@@ -1,4 +1,4 @@
-package com.mic.betterslimes.handlers;
+package com.mic.betterslimes.util;
 
 import java.io.File;
 
@@ -7,7 +7,7 @@ import net.minecraftforge.common.config.Configuration;
 
 import static com.mic.betterslimes.entity.EntityBetterSlime.damageMultiplier;
 
-public class ConfigHandler {
+public class ModConfig {
 	public static Configuration config;
 	public static boolean startupMessage = true;
 	
@@ -60,7 +60,7 @@ public class ConfigHandler {
 		knightSlime = config.getInt("Knight Slime Spawn Chance", category, knightSlime, 0, 100, "0 for never and 100 for always.");
 
 
-		Quazar.initConfig();
+		Quazar.initConfig(config);
 
 		config.save();
 
