@@ -314,14 +314,14 @@ public class Quazar extends EntityBetterSlime implements ISpecialSlime {
             double dist = this.getDistanceSq(entity) + 1;
 
             if (entity != this && this.getDistance(entity) < explodeRange) {
-                {
-                    entity.setPositionAndUpdate(entity.posX, entity.posY + 1.5, entity.posZ);
-                    entity.addVelocity((0.8 / (entity.posX - this.posX)) * leapVelocityMultiplierXZ, MathHelper.clamp(32 / (dist) * leapVelocityMultiplierY, 1, 16), 0.8 / (entity.posZ - this.posZ) * leapVelocityMultiplierXZ);
-                    entity.velocityChanged = true;
-                    entity.attackEntityFrom(DamageSource.GENERIC, (float) ((explodeDamage / (dist + 1))));
-                    entity.setLastAttackedEntity(this);
+                entity.setPositionAndUpdate(entity.posX, entity.posY + 1.5, entity.posZ);
+                entity.addVelocity((0.8 / (entity.posX - this.posX)) * leapVelocityMultiplierXZ, MathHelper.clamp(32 / (dist) * leapVelocityMultiplierY, 1, 16), 0.8 / (entity.posZ - this.posZ) * leapVelocityMultiplierXZ);
+                entity.velocityChanged = true;
+                entity.attackEntityFrom(DamageSource.GENERIC, (float) ((explodeDamage / (dist + 1))));
+                entity.setLastAttackedEntity(this);
+                
+                if (!entity.isOnSameTeam(this))
                     entity.setRevengeTarget(this);
-                }
             }
         }
     }
@@ -460,31 +460,19 @@ public class Quazar extends EntityBetterSlime implements ISpecialSlime {
 
     // Disable cobweb slowdown
     @Override
-    public void setInWeb()
-    {
-    }
+    public void setInWeb() { }
 
     // Disable water pushing
     @Override
-    public boolean isPushedByWater()
-    {
-        return false;
-    }
+    public boolean isPushedByWater() { return false; }
 
     // Makes entity unaffected by water
     @Override
-    public boolean isInWater()
-    {
-        return false;
-    }
+    public boolean isInWater() { return false; }
 
     // Makes entity unaffected by lava
     @Override
-    public boolean isInLava()
-    {
-        return false;
-    }
-
+    public boolean isInLava() { return false; }
 
     // Disable fall damage so the boss doesn't kill itself when it leaps
     @Override

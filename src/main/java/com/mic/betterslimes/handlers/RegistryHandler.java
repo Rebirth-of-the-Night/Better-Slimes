@@ -8,6 +8,7 @@ import com.mic.betterslimes.entity.slimes.*;
 
 import com.mic.betterslimes.items.ModItems;
 import com.mic.betterslimes.sounds.ModSounds;
+import com.mic.betterslimes.util.ModConfig;
 
 import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.item.Item;
@@ -53,6 +54,7 @@ public class RegistryHandler {
 			BetterSlimes.proxy.registerItemRenderer(item, 0, "inventory");
 	}
 
+    // Change better slimes that spawn in biomes to their respective biome type
 	@SubscribeEvent
 	public static void onEntityJoinWorld(EntityJoinWorldEvent event) {
 
@@ -62,36 +64,38 @@ public class RegistryHandler {
 			k.setSlimeSize(9, true);
 			k.setAttackModifier(1);
 			k.setHealthModifier(40);
-		} else if (event.getEntity() instanceof EntityBetterSlime) {
-
-			if (!(event.getEntity() instanceof ISpecialSlime)) {
-                EntityBetterSlime s = (EntityBetterSlime) event.getEntity();
-                
-                if (BiomeDictionary.getBiomes(BiomeDictionary.Type.SNOWY)
-                    .contains(event.getWorld().getBiome(event.getEntity().getPosition()))) 
-                        s = new IceSlime(event.getWorld());
-                
-                if (BiomeDictionary.getBiomes(BiomeDictionary.Type.JUNGLE)
-                    .contains(event.getWorld().getBiome(event.getEntity().getPosition()))) 
-                        s = new JungleSlime(event.getWorld());
-                
-                if (BiomeDictionary.getBiomes(BiomeDictionary.Type.DRY)
-                    .contains(event.getWorld().getBiome(event.getEntity().getPosition()))) 
-                        s = new SandSlime(event.getWorld());
-                
-                // Replace the spawned entity with the instantiated version
-				if (!s.equals(event.getEntity())) {
-					s.setLocationAndAngles(event.getEntity().posX, event.getEntity().posY, event.getEntity().posZ,
-							event.getEntity().rotationYaw, event.getEntity().rotationPitch);
-					s.onInitialSpawn(event.getWorld().getDifficultyForLocation(event.getEntity().getPosition()),
-							(IEntityLivingData) null);
-					if (!event.getWorld().isRemote) {
-						event.getWorld().spawnEntity(s);
-					}
-					event.getEntity().setDropItemsWhenDead(false);
-					event.getEntity().setDead();
-				}
-			}
+        } else if (event.getEntity() instanceof EntityBetterSlime
+                    && !(event.getEntity() instanceof ISpecialSlime)
+                    && ModConfig.convertSlimes) {
+            EntityBetterSlime s = (EntityBetterSlime) event.getEntity();
+            
+            if (BiomeDictionary.getBiomes(BiomeDictionary.Type.SNOWY)
+                .contains(event.getWorld().getBiome(event.getEntity().getPosition()))
+                && (ModConfig.convertIgnoreChance || ModConfig.iceSlime > 0)) 
+                    s = new IceSlime(event.getWorld());
+            
+            if (BiomeDictionary.getBiomes(BiomeDictionary.Type.JUNGLE)
+                .contains(event.getWorld().getBiome(event.getEntity().getPosition()))
+                && (ModConfig.convertIgnoreChance || ModConfig.jungleSlime > 0)) 
+                    s = new JungleSlime(event.getWorld());
+            
+            if (BiomeDictionary.getBiomes(BiomeDictionary.Type.DRY)
+                .contains(event.getWorld().getBiome(event.getEntity().getPosition()))
+                && (ModConfig.convertIgnoreChance || ModConfig.sandSlime > 0)) 
+                    s = new SandSlime(event.getWorld());
+            
+            // Replace the spawned entity with the instantiated version
+            if (!s.equals(event.getEntity())) {
+                s.setLocationAndAngles(event.getEntity().posX, event.getEntity().posY, event.getEntity().posZ,
+                        event.getEntity().rotationYaw, event.getEntity().rotationPitch);
+                s.onInitialSpawn(event.getWorld().getDifficultyForLocation(event.getEntity().getPosition()),
+                        (IEntityLivingData) null);
+                if (!event.getWorld().isRemote) {
+                    event.getWorld().spawnEntity(s);
+                }
+                event.getEntity().setDropItemsWhenDead(false);
+                event.getEntity().setDead();
+            }
 		}
 	}
 }

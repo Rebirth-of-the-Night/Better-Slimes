@@ -9,7 +9,9 @@ import static com.mic.betterslimes.entity.EntityBetterSlime.damageMultiplier;
 
 public class ModConfig {
 	public static Configuration config;
-	public static boolean startupMessage = true;
+    public static boolean startupMessage = true;
+    public static boolean convertSlimes = true;
+    public static boolean convertIgnoreChance = true;
 	
 	public static int blueSlime = 14;
 	public static int redSlime = 7;
@@ -41,7 +43,9 @@ public class ModConfig {
 		startupMessage = config.getBoolean("Start-Up Message?", category, startupMessage, "Give a start-up thank you?");
 		kingChance = config.getInt("King Slime Spawn Chance", category, kingChance, 0, 100, "0 for never and 100 for every night.");
 		splitChance = config.getInt("Slime Splitting Chance", category, splitChance, 0, 100, "0 for never and 100 for always.");
-		damageMultiplier = config.getFloat("Damage Multiplier", category, damageMultiplier, 0, MAX, "Custom slime damage multiplier");
+        damageMultiplier = config.getFloat("Damage Multiplier", category, damageMultiplier, 0, MAX, "Custom slime damage multiplier");
+        convertSlimes = config.getBoolean("Convert Slimes?", category, convertSlimes, "Convert slimes that spawn to their biome-specific type, if applicable?");
+        convertIgnoreChance = config.getBoolean("Ignore Spawn Chance?", category, convertIgnoreChance, "If convert slimes is enabled, ignore the spawn chance being 0 when spawning a specific slime?");
 
 		category = "Slime Spawn Chances";
 
