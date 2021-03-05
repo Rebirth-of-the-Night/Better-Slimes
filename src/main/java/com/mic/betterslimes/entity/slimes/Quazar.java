@@ -297,7 +297,11 @@ public class Quazar extends EntityBetterSlime implements ISpecialSlime {
         this.playSound(SoundEvents.BLOCK_CLOTH_PLACE, 2.0F, 0.3F);
         this.playSound(SoundEvents.BLOCK_SAND_FALL, 2.0F, 0.8F);
         this.setPositionAndUpdate(this.posX, this.posY + 2, this.posZ);
-        if (!this.world.isRemote) this.setVelocity(d0 / 7, 2, d1 / 7);
+        if (!this.world.isRemote) {
+            this.motionX = d0 / 7;
+            this.motionY = 2;
+            this.motionZ = d1 / 7;
+        }
     }
 
     private void explode() {

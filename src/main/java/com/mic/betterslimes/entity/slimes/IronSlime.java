@@ -25,8 +25,7 @@ public class IronSlime extends EntityBetterSlime implements ISpecialSlime{
 	
 	@Override
 	public void knockBack(Entity entityIn, float strength, double xRatio, double zRatio) {
-		// TODO Auto-generated method stub
-		super.knockBack(entityIn, 0, xRatio, zRatio);
+		super.knockBack(entityIn, strength * 0.1F, xRatio, zRatio);
 	}
 
 	@Override
